@@ -19,6 +19,16 @@ except Exception as e:
 
 app = FastAPI()
 
+# --- KEEP ALIVE (For Render Free Tier) ---
+try:
+    from keep_alive import start_keep_alive
+    @app.on_event("startup")
+    async def startup_event():
+        start_keep_alive()
+except ImportError:
+    pass
+
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
