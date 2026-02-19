@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import List, Optional
-from datetime import date
+from datetime import date, datetime
 
 class UserBase(BaseModel):
     email: str
@@ -29,6 +29,7 @@ class Faculty(FacultyBase):
 
 class SubjectBase(BaseModel):
     name: str
+    code: Optional[str] = None
 
 class SubjectCreate(SubjectBase):
     pass
@@ -53,6 +54,7 @@ class FacultySubject(FacultySubjectBase):
 
 class StudentBase(BaseModel):
     roll_number: str
+    reg_number: Optional[str] = None
     name: str
 
 class StudentCreate(StudentBase):
@@ -66,6 +68,7 @@ class Student(StudentBase):
 
 class ClassBase(BaseModel):
     name: str
+    advisor_id: Optional[int] = None
 
 class ClassCreate(ClassBase):
     pass
@@ -88,5 +91,22 @@ class AttendanceCreate(AttendanceBase):
 
 class Attendance(AttendanceBase):
     id: int
+    class Config:
+        orm_mode = True
+
+class ChatMessageBase(BaseModel):
+    message_text: str
+    message_type: str
+    class_id: int
+    subject_id: int
+
+class ChatMessageCreate(ChatMessageBase):
+    faculty_id: Optional[int] = None
+
+class ChatMessage(ChatMessageBase):
+    id: int
+    timestamp: datetime
+    faculty_id: Optional[int]
+    
     class Config:
         orm_mode = True

@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+.env.local
+
+# AttMate Specific
+backend/start_dev.py
+backend/test_frontend_integration.py
+ACCESS_GUIDE.md
+
+# Frontend (Node)
+node_modules/
+npm-debug.log
+yarn-error.log
+.expo/
+*.jks
+*.p12
+*.key
+*.mobileprovision
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
