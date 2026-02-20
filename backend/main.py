@@ -75,9 +75,11 @@ def login(login_data: schemas.UserCreate, db: Session = Depends(database.get_db)
     if user.role == 'teacher' and user.faculty_profile:
         response_data["name"] = user.faculty_profile.name
         response_data["department"] = user.faculty_profile.department
-        # Count subjects assigned to this faculty
         subject_assignments = db.query(models.FacultySubject).filter(models.FacultySubject.faculty_id == user.faculty_profile.id).all()
-        response_data["subjects"] = [{"id": a.subject_id} for a in subject_assignments] # Profile.js uses .length
+        unique_subjects = set(a.subject_id for a in subject_assignments)
+        unique_classes = set(a.class_id for a in subject_assignments)
+        response_data["subjects"] = [{"id": s} for s in unique_subjects]
+        response_data["classes"] = [{"id": c} for c in unique_classes]
 
     return response_data
 
@@ -148,10 +150,12 @@ def get_teacher_classes(user_id: int, db: Session = Depends(database.get_db)):
     result = []
     for c in classes:
         # Get subjects for this class for this teacher
+        # Use distinct to avoid duplicates if multiple assignments exist
         subs = db.query(models.Subject).join(models.FacultySubject).filter(
             models.FacultySubject.class_id == c.id, 
             models.FacultySubject.faculty_id == faculty.id
-        ).all()
+        ).distinct().all()
+        
         result.append({
             "id": c.id,
             "name": c.name,
@@ -159,36 +163,96 @@ def get_teacher_classes(user_id: int, db: Session = Depends(database.get_db)):
         })
     return result
 
+@app.get("/teacher/my-advisory-class")
+def get_advisory_class(user_id: int, db: Session = Depends(database.get_db)):
+    faculty = db.query(models.Faculty).filter(models.Faculty.user_id == user_id).first()
+    if not faculty:
+        raise HTTPException(status_code=404, detail="Faculty not found")
+        
+    cls = db.query(models.Class).filter(models.Class.advisor_id == faculty.id).first()
+    if not cls:
+        return None
+    return {"id": cls.id, "name": cls.name}
+
 @app.get("/teacher/class-stats/{class_id}")
-def get_class_stats(class_id: int, db: Session = Depends(database.get_db)):
+def get_class_stats(class_id: int, user_id: int, db: Session = Depends(database.get_db)):
     from sqlalchemy import func
     
+    print(f"DEBUG: get_class_stats class_id={class_id} user_id={user_id}")
+    
+    # 1. Verify Class Exists
+    class_obj = db.query(models.Class).filter(models.Class.id == class_id).first()
+    if not class_obj:
+        raise HTTPException(status_code=404, detail="Class not found")
+
+    # 2. Get Faculty
+    faculty = db.query(models.Faculty).filter(models.Faculty.user_id == user_id).first()
+    is_advisor = False
+    if faculty and class_obj.advisor_id == faculty.id:
+        is_advisor = True
+    
+    print(f"DEBUG: Faculty={faculty.name if faculty else 'None'}, IsAdvisor={is_advisor}")
+
+    # 3. Strategy: Get assignments. 
+    # If Advisor -> Get All Subjects (distinct)
+    # If Faculty -> Get Assigned Subjects (distinct)
+    # But to be safe, let's query specific subjects first
+    
+    unique_assignments = []
+    
+    if is_advisor:
+        # Fetch all subjects linked to this class (via any faculty)
+        # We need distinct Subject IDs linked to this class
+        assignments = db.query(models.FacultySubject).filter(models.FacultySubject.class_id == class_id).all()
+    else:
+        # Fetch only subjects assigned to THIS faculty for THIS class
+        if faculty:
+            assignments = db.query(models.FacultySubject).filter(
+                models.FacultySubject.class_id == class_id, 
+                models.FacultySubject.faculty_id == faculty.id
+            ).all()
+        else:
+            assignments = []
+
+    # Filter unique subjects
+    seen = set()
+    for a in assignments:
+        if a.subject_id not in seen:
+            unique_assignments.append(a)
+            seen.add(a.subject_id)
+            
+    print(f"DEBUG: Found {len(unique_assignments)} unique subjects for stats.")
+
     # Calculate overall attendance for the class
     total_students = db.query(models.Student).filter(models.Student.class_id == class_id).count()
     if total_students == 0:
         return {"overall": 0, "subjects": []}
     
     # Subject wise stats
-    assignments = db.query(models.FacultySubject).filter(models.FacultySubject.class_id == class_id).all()
     subject_stats = []
     
     total_percentage_sum = 0
     subject_count = 0
-
-    for a in assignments:
+    # Correction: To calculate overall attendance, we should sum all subject % and divide by count?
+    # Or calculate (Total Present across all subjects / Total Sessions * Students)?
+    # Let's stick to average of percentages for now or simplified logic.
+    
+    for a in unique_assignments:
         sub = db.query(models.Subject).filter(models.Subject.id == a.subject_id).first()
         
         # 1. Calculate Total Sessions (Unique Dates)
-        sessions = db.query(func.count(func.distinct(models.Attendance.date))).filter(
+        # 1. Calculate Total Sessions (Unique Dates + Sessions)
+        sessions_query = db.query(models.Attendance.date, models.Attendance.session_n).filter(
             models.Attendance.class_id == class_id,
             models.Attendance.subject_id == sub.id
-        ).scalar()
+        ).distinct().all()
+        sessions = len(sessions_query)
         
         # 2. Calculate Total Present/OD Records
         present_od_count = db.query(models.Attendance).filter(
             models.Attendance.class_id == class_id,
             models.Attendance.subject_id == sub.id,
-            models.Attendance.status.in_(['Present', 'OD'])
+            func.lower(models.Attendance.status).in_(['present', 'od', 'p', 'o'])
         ).count()
         
         # 3. Calculate Percentage
@@ -256,6 +320,21 @@ async def chat_interaction(
     # List to track students who were marked (absent/od/present)
     marked_student_ids = []
 
+    # Calculate session_n for today
+    today_start = datetime.combine(today, datetime.min.time())
+    
+    from sqlalchemy import func
+    session_match = re.search(r'session\s*(\d+)', message, re.IGNORECASE)
+    if session_match:
+        current_session_n = int(session_match.group(1))
+    else:
+        max_s = db.query(func.max(models.Attendance.session_n)).filter(
+            models.Attendance.class_id == class_id,
+            models.Attendance.subject_id == subject_id,
+            models.Attendance.date == today
+        ).scalar()
+        current_session_n = max_s if max_s else 1
+
     # Check if parsing was successful
     if "error" not in parse_result:
         # 1. PROCESS EXPLICIT ENTRIES
@@ -272,10 +351,23 @@ async def chat_interaction(
             for roll in roll_numbers:
                 entries_to_process.append((roll, status))
         
+        # Normalize statuses to strict DB case BEFORE processing
+        normalized_entries = []
+        for r, s in entries_to_process:
+            if s.lower() == 'od':
+                ns = 'OD'
+            else:
+                ns = s.capitalize()
+            normalized_entries.append((r, ns))
+        entries_to_process = normalized_entries
+        
         processed_students = []
         for roll, status in entries_to_process:
+            # Zero-pad numeric roll numbers up to 3 digits (e.g. '2' -> '002', '12' -> '012')
+            search_roll = roll.zfill(3) if roll.isdigit() and len(roll) < 3 else roll
+            
             student = db.query(models.Student).filter(
-                models.Student.roll_number == roll,
+                models.Student.roll_number.endswith(search_roll),
                 models.Student.class_id == class_id
             ).first()
             
@@ -283,16 +375,18 @@ async def chat_interaction(
                 marked_student_ids.append(student.id)
                 processed_students.append(roll)
                 
-                # Check if record exists
+                # Check if record exists for this session
                 att = db.query(models.Attendance).filter(
                     models.Attendance.student_id == student.id,
                     models.Attendance.date == today,
+                    models.Attendance.session_n == current_session_n,
                     models.Attendance.subject_id == subject_id
                 ).first()
                 
                 if not att:
                     att = models.Attendance(
                         date=today,
+                        session_n=current_session_n,
                         status=status,
                         student_id=student.id,
                         class_id=class_id,
@@ -321,16 +415,18 @@ async def chat_interaction(
 
             auto_present_count = 0
             for student in all_students:
-                # Check/Create attendance 'Present'
+                # Check/Create attendance 'Present' for this session
                 att = db.query(models.Attendance).filter(
                     models.Attendance.student_id == student.id,
                     models.Attendance.date == today,
+                    models.Attendance.session_n == current_session_n,
                     models.Attendance.subject_id == subject_id
                 ).first()
                 
                 if not att:
                     att = models.Attendance(
                         date=today,
+                        session_n=current_session_n,
                         status="Present",
                         student_id=student.id,
                         class_id=class_id,
@@ -341,10 +437,9 @@ async def chat_interaction(
                 # If already exists, we do NOT overwrite automatically to avoid accidents
                 # unless logic dictates otherwise. For now, we only fill gaps.
 
-            response_text = f"✓ Marked {processed_count} students as {entries_to_process[0][1] if entries_to_process else 'specified status'}.\n"
-            response_text += f"✓ Automatically marked {auto_present_count} others as Present."
+            response_text = f"{processed_count + auto_present_count} students parsed and updated"
         else:
-             response_text = f"✓ Marked {processed_count} students."
+             response_text = f"{processed_count} students parsed and updated"
 
     else:
         # Parsing failed - provide helpful error message
@@ -381,17 +476,18 @@ def get_attendance_sheet(class_id: int, subject_id: int, db: Session = Depends(d
     # 1. Get all students in class
     students = db.query(models.Student).filter(models.Student.class_id == class_id).order_by(models.Student.roll_number).all()
     
-    # 2. Get all distinct dates for this subject and class
-    # We want dates where at least one attendance record exists
-    dates_query = db.query(models.Attendance.date).filter(
+    # 2. Get all distinct (date, session_n) combinations for this subject and class
+    # We want sessions where at least one attendance record exists
+    dates_query = db.query(models.Attendance.date, models.Attendance.session_n).filter(
         models.Attendance.class_id == class_id,
         models.Attendance.subject_id == subject_id
-    ).distinct().order_by(models.Attendance.date.asc()).all()
+    ).distinct().order_by(models.Attendance.date.asc(), models.Attendance.session_n.asc()).all()
     
-    dates = [d[0] for d in dates_query]
+    # Store as string "YYYY-MM-DD|SESSION"
+    dates = [f"{d[0].isoformat()}|{d[1]}" for d in dates_query]
 
     # 3. Build the grid
-    # Row: { name: "Student Name", roll: "101", date1: "P", date2: "A", ... }
+    # Row: { name: "Student Name", roll: "101", "2026-02-18|1": "P", "2026-02-18|2": "A", ... }
     
     grid = []
     
@@ -408,24 +504,24 @@ def get_attendance_sheet(class_id: int, subject_id: int, db: Session = Depends(d
             models.Attendance.subject_id == subject_id
         ).all()
         
-        # Map date to status
-        att_map = {rec.date: rec.status for rec in recs}
+        # Map "date|session" to status
+        att_map = {f"{rec.date.isoformat()}|{rec.session_n}": rec.status for rec in recs}
         
-        for d in dates:
-            date_str = d.isoformat()
-            status = att_map.get(d, "-") # - for no record
-            # Normalize status for frontend (P, A, O)
+        for d_key in dates:
+            status = att_map.get(d_key, "-") # - for no record
+            # Normalize status for frontend (P, A, O) case-insensitively
             short_status = "-"
-            if status == "Present": short_status = "P"
-            elif status == "Absent": short_status = "A"
-            elif status == "OD": short_status = "O"
+            raw_s = status.lower()
+            if raw_s in ["present", "p"]: short_status = "P"
+            elif raw_s in ["absent", "a"]: short_status = "A"
+            elif raw_s in ["od", "o"]: short_status = "O"
             
-            row["attendance"][date_str] = short_status
+            row["attendance"][d_key] = short_status
             
         grid.append(row)
         
     return {
-        "dates": [d.isoformat() for d in dates],
+        "dates": dates,
         "students": grid
     }
 
@@ -437,21 +533,38 @@ def get_chat_history(
     db: Session = Depends(database.get_db)
 ):
     """Get chat history for a specific class and subject"""
+    from datetime import date, datetime
+    today = date.today()
+    today_start = datetime.combine(today, datetime.min.time())
+    
     messages = db.query(models.ChatMessage).filter(
         models.ChatMessage.class_id == class_id,
         models.ChatMessage.subject_id == subject_id
     ).order_by(models.ChatMessage.timestamp.asc()).limit(limit).all()
     
+    from sqlalchemy import func
+    max_s = db.query(func.max(models.Attendance.session_n)).filter(
+        models.Attendance.class_id == class_id,
+        models.Attendance.subject_id == subject_id,
+        models.Attendance.date == today
+    ).scalar()
+    
+    session_n = max_s if max_s else 1
+    
+    msgs_out = [
+        {
+            "id": msg.id,
+            "text": msg.message_text,
+            "type": msg.message_type,
+            "timestamp": msg.timestamp.isoformat()
+        }
+        for msg in messages
+    ]
+    
     return {
-        "messages": [
-            {
-                "id": msg.id,
-                "text": msg.message_text,
-                "type": msg.message_type,
-                "timestamp": msg.timestamp.isoformat()
-            }
-            for msg in messages
-        ]
+        "status": "success",
+        "messages": msgs_out,
+        "current_session": session_n
     }
 
 

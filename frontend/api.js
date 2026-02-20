@@ -1,6 +1,13 @@
 import axios from 'axios';
+import { Platform } from 'react-native';
 
-const API_BASE_URL = 'http://10.165.173.171:8000'; // Local Network IP for physical device
+// For Physical Mobile App over Wi-Fi Hotspot
+let API_BASE_URL = 'http://192.168.137.1:8000';
+
+// For Laptop Browser Preview bypass CORS
+if (Platform.OS === 'web') {
+    API_BASE_URL = 'http://localhost:8000';
+}
 
 const api = axios.create({
     baseURL: API_BASE_URL,

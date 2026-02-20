@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, SafeAreaView, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ActivityIndicator, Keyboard, Animated } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { COLORS, GLOBAL_STYLES } from '../styles/theme';
 import api from '../api';
@@ -12,7 +13,38 @@ export default function ClassChat() {
     const [inputText, setInputText] = useState('');
     const [showConfirm, setShowConfirm] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [currentSession, setCurrentSession] = useState(1);
     const scrollRef = useRef();
+    const keyboardHeight = useRef(new Animated.Value(0)).current;
+
+    useEffect(() => {
+
+        const keyboardWillShowListener = Keyboard.addListener(
+            'keyboardWillShow',
+            (e) => {
+                Animated.timing(keyboardHeight, {
+                    duration: e.duration ? e.duration : 250,
+                    toValue: e.endCoordinates.height,
+                    useNativeDriver: false,
+                }).start();
+            }
+        );
+        const keyboardWillHideListener = Keyboard.addListener(
+            'keyboardWillHide',
+            (e) => {
+                Animated.timing(keyboardHeight, {
+                    duration: e.duration ? e.duration : 250,
+                    toValue: 0,
+                    useNativeDriver: false,
+                }).start();
+            }
+        );
+
+        return () => {
+            keyboardWillHideListener.remove();
+            keyboardWillShowListener.remove();
+        };
+    }, []);
 
     // Load chat history when component mounts
     useEffect(() => {
@@ -24,6 +56,9 @@ export default function ClassChat() {
             setLoading(true);
             const response = await api.get(`/chat/history/${classId}/${subjectId}`);
             setMessages(response.data.messages || []);
+            if (response.data.current_session) {
+                setCurrentSession(response.data.current_session);
+            }
         } catch (error) {
             console.error('Failed to load chat history:', error);
             setMessages([]);
@@ -55,7 +90,7 @@ export default function ClassChat() {
             timestamp: new Date().toISOString()
         };
         setMessages(prev => [...prev, newMsg]);
-        const messageToSend = inputText;
+        const messageToSend = `${inputText} Session ${currentSession}`;
         setInputText('');
 
         try {
@@ -95,84 +130,105 @@ export default function ClassChat() {
         scrollRef.current?.scrollToEnd({ animated: true });
     };
 
+    const displayMessageText = (text) => {
+        // Strip out the injected "Session N" string for cleaner display
+        return text.replace(/Session \d+$/i, '').trim();
+    };
+
+    const handleNewSession = () => {
+        setCurrentSession(prev => prev + 1);
+        const tempId = `temp_${Date.now()}`;
+        setMessages(prev => [...prev, {
+            id: tempId,
+            text: `*** Session ${currentSession + 1} Started ***`,
+            type: 'system',
+            timestamp: new Date().toISOString()
+        }]);
+    };
+
     return (
-        <SafeAreaView style={styles.container}>
-            <KeyboardAvoidingView
-                style={styles.flex}
-                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}
-            >
-                <View style={styles.chatHeader}>
-                    <View style={styles.avatar}>
-                        <Text style={styles.avatarText}>{className ? className.charAt(0) : 'C'}</Text>
+        <SafeAreaView style={styles.container} edges={['bottom', 'left', 'right']}>
+            <Animated.View style={[styles.flex, { paddingBottom: Platform.OS === 'ios' ? keyboardHeight : keyboardHeight }]}>
+                <View style={styles.flex}>
+                    <View style={styles.chatHeader}>
+                        <View style={styles.avatar}>
+                            <Text style={styles.avatarText}>{className ? className.charAt(0) : 'C'}</Text>
+                        </View>
+                        <View style={styles.headerInfo}>
+                            <Text style={styles.chatClass}>{className || 'Class'}</Text>
+                            <Text style={styles.chatSubtitle} numberOfLines={1}>{subjectName || 'Attendance Overview'}</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row', gap: 8 }}>
+                            <TouchableOpacity
+                                style={styles.statsBtn}
+                                onPress={() => navigation.navigate('SubjectDashboard', { classId, subject: subjectName, subjectId })}
+                            >
+                                <Text style={styles.statsBtnText}>📊 Stats</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={handleNewSession} style={[styles.statsBtn, { backgroundColor: COLORS.surface, borderColor: COLORS.primary }]}>
+                                <Text style={[styles.statsBtnText, { color: COLORS.primary }]}>+ Session {currentSession + 1}</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                    <View style={styles.headerInfo}>
-                        <Text style={styles.chatClass}>{className || 'Class'}</Text>
-                        <Text style={styles.chatSubtitle} numberOfLines={1}>{subjectName || 'Attendance Overview'}</Text>
-                    </View>
-                    <TouchableOpacity
-                        style={styles.statsBtn}
-                        onPress={() => navigation.navigate('Stats', { classId, className })}
+
+                    <ScrollView
+                        ref={scrollRef}
+                        style={styles.chatArea}
+                        contentContainerStyle={styles.chatContent}
+                        showsVerticalScrollIndicator={false}
+                        onContentSizeChange={() => scrollRef.current?.scrollToEnd({ animated: true })}
                     >
-                        <Text style={styles.statsBtnText}>📊 Stats</Text>
-                    </TouchableOpacity>
-                </View>
-
-                <ScrollView
-                    ref={scrollRef}
-                    style={styles.chatArea}
-                    contentContainerStyle={styles.chatContent}
-                    showsVerticalScrollIndicator={false}
-                    onContentSizeChange={() => scrollRef.current?.scrollToEnd({ animated: true })}
-                >
-                    {loading ? (
-                        <View style={styles.loadingContainer}>
-                            <ActivityIndicator size="large" color={COLORS.accent} />
-                            <Text style={styles.loadingText}>Loading chat history...</Text>
-                        </View>
-                    ) : messages.length === 0 ? (
-                        <View style={styles.emptyContainer}>
-                            <Text style={styles.emptyText}>👋 Start a conversation!</Text>
-                            <Text style={styles.emptySubtext}>Try: "101, 102 absent" or "Mark 103 as OD"</Text>
-                        </View>
-                    ) : (
-                        messages.map(msg => (
-                            <View key={msg.id} style={[styles.bubble, msg.type === 'system' ? styles.systemBubble : styles.teacherBubble]}>
-                                <Text style={msg.type === 'system' ? styles.systemText : styles.teacherText}>{msg.text}</Text>
-                                <Text style={[styles.timeText, msg.type === 'teacher' && { color: 'rgba(255,255,255,0.7)' }]}>
-                                    {formatTime(msg.timestamp)}
-                                </Text>
+                        {loading ? (
+                            <View style={styles.loadingContainer}>
+                                <ActivityIndicator size="large" color={COLORS.accent} />
+                                <Text style={styles.loadingText}>Loading chat history...</Text>
                             </View>
-                        ))
-                    )}
-                </ScrollView>
+                        ) : messages.length === 0 ? (
+                            <View style={styles.emptyContainer}>
+                                <Text style={styles.emptyText}>👋 Start a conversation!</Text>
+                                <Text style={styles.emptySubtext}>Try: "101, 102 absent" or "Mark 103 as OD"</Text>
+                            </View>
+                        ) : (
+                            messages.map(msg => (
+                                <View key={msg.id} style={[styles.bubble, msg.type === 'system' ? styles.systemBubble : styles.teacherBubble]}>
+                                    <Text style={msg.type === 'system' ? styles.systemText : styles.teacherText}>
+                                        {displayMessageText(msg.text)}
+                                    </Text>
+                                    <Text style={[styles.timeText, msg.type === 'teacher' && { color: 'rgba(255,255,255,0.7)' }]}>
+                                        {formatTime(msg.timestamp)}
+                                    </Text>
+                                </View>
+                            ))
+                        )}
+                    </ScrollView>
 
-                <View style={styles.footer}>
-                    {showConfirm && (
-                        <View style={styles.confirmPill}>
-                            <Text style={styles.confirmText}>✅ Attendance updated successfully</Text>
+                    <View style={styles.footer}>
+                        {showConfirm && (
+                            <View style={styles.confirmPill}>
+                                <Text style={styles.confirmText}>✅ Attendance updated successfully</Text>
+                            </View>
+                        )}
+
+                        <View style={styles.inputContainer}>
+                            <TextInput
+                                style={styles.input}
+                                value={inputText}
+                                onChangeText={setInputText}
+                                placeholder="e.g. 133, 155 absent | 144 OD"
+                                placeholderTextColor={COLORS.muted}
+                                multiline
+                            />
+                            <TouchableOpacity
+                                style={[styles.sendBtn, !inputText.trim() && styles.sendBtnDisabled]}
+                                onPress={sendMessage}
+                                disabled={!inputText.trim()}
+                            >
+                                <Text style={styles.sendBtnText}>➔</Text>
+                            </TouchableOpacity>
                         </View>
-                    )}
-
-                    <View style={styles.inputContainer}>
-                        <TextInput
-                            style={styles.input}
-                            value={inputText}
-                            onChangeText={setInputText}
-                            placeholder="e.g. 133, 155 absent | 144 OD"
-                            placeholderTextColor={COLORS.muted}
-                            multiline
-                        />
-                        <TouchableOpacity
-                            style={[styles.sendBtn, !inputText.trim() && styles.sendBtnDisabled]}
-                            onPress={sendMessage}
-                            disabled={!inputText.trim()}
-                        >
-                            <Text style={styles.sendBtnText}>➔</Text>
-                        </TouchableOpacity>
                     </View>
                 </View>
-            </KeyboardAvoidingView>
+            </Animated.View>
         </SafeAreaView>
     );
 }
@@ -293,4 +349,3 @@ const styles = StyleSheet.create({
     sendBtnDisabled: { backgroundColor: '#f1f5f9' },
     sendBtnText: { color: '#fff', fontSize: 18, fontWeight: '700' }
 });
-

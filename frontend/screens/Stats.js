@@ -105,7 +105,7 @@ export default function Stats() {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#fff', height: '100%' },
+    container: { flex: 1, backgroundColor: '#fdfdfd', height: '100%' },
     scrollContent: { flexGrow: 1 },
     header: { padding: 24, paddingBottom: 12 },
     overallCard: { margin: 24, marginTop: 0, padding: 24 },

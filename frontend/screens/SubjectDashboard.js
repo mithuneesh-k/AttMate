@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, Dimensions, Platform } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { COLORS, GLOBAL_STYLES } from '../styles/theme';
+import { useAuth } from '../context/AuthContext';
 import api from '../api';
 
 const { width } = Dimensions.get('window');
@@ -9,11 +10,31 @@ const { width } = Dimensions.get('window');
 export default function SubjectDashboard() {
     const route = useRoute();
     const navigation = useNavigation();
+    const { user } = useAuth();
     const { classId, subject, subjectId, days, percent } = route.params || {};
 
     const [activeTab, setActiveTab] = useState('sheet'); // 'summary' or 'sheet'
     const [loading, setLoading] = useState(false);
     const [sheetData, setSheetData] = useState(null);
+    const [overview, setOverview] = useState({ days: days || '-', percent: percent || '-' });
+
+    useEffect(() => {
+        if (!days || !percent) {
+            const fetchOverview = async () => {
+                if (!user?.id) return;
+                try {
+                    const res = await api.get(`/teacher/class-stats/${classId}?user_id=${user.id}`);
+                    const subStat = res.data.subjects.find(s => s.id === subjectId);
+                    if (subStat) {
+                        setOverview({ days: subStat.working_days, percent: subStat.attendance });
+                    }
+                } catch (e) {
+                    console.error("Failed to fetch subject stats overview:", e);
+                }
+            };
+            fetchOverview();
+        }
+    }, [classId, subjectId, days, percent, user]);
 
     useEffect(() => {
         if (activeTab === 'sheet') {
@@ -40,12 +61,12 @@ export default function SubjectDashboard() {
                 <Text style={styles.summaryTitle}>Current Standing</Text>
                 <View style={styles.summaryRow}>
                     <View style={styles.summaryItem}>
-                        <Text style={styles.summaryValue}>{percent}%</Text>
+                        <Text style={styles.summaryValue}>{overview.percent}%</Text>
                         <Text style={styles.summaryLabel}>Attendance</Text>
                     </View>
                     <View style={styles.vertLine} />
                     <View style={styles.summaryItem}>
-                        <Text style={styles.summaryValue}>{days}</Text>
+                        <Text style={styles.summaryValue}>{overview.days}</Text>
                         <Text style={styles.summaryLabel}>Sessions</Text>
                     </View>
                 </View>
@@ -63,33 +84,47 @@ export default function SubjectDashboard() {
         if (!students || students.length === 0) return <Text style={styles.errorText}>No attendance records found.</Text>;
 
         // Width for date columns
-        const colWidth = 40;
-        const nameColWidth = 100;
+        const colWidth = 55;
+        const nameColWidth = 160;
 
         return (
             <ScrollView style={styles.sheetContainer} nestedScrollEnabled={true}>
-                <ScrollView horizontal={true} showsHorizontalScrollIndicator={true}>
+                <ScrollView
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={true}
+                    style={Platform.OS === 'web' ? { overflowX: 'auto' } : {}}
+                >
                     <View>
                         {/* Header Row */}
                         <View style={styles.headerRow}>
                             <View style={[styles.cell, styles.nameCell, styles.headerCell, { width: nameColWidth }]}>
                                 <Text style={styles.headerText}>Student</Text>
                             </View>
-                            {dates.map((date, index) => (
-                                <View key={index} style={[styles.cell, styles.dateCell, styles.headerCell, { width: colWidth }]}>
-                                    <Text style={styles.headerDateText}>
-                                        {/* Format: 2026-02-18 -> 18/02 */}
-                                        {date.split('-').slice(1).reverse().join('/')}
-                                    </Text>
-                                </View>
-                            ))}
+                            {dates.map((dateObj, index) => {
+                                const [dateStr, sessionStr] = dateObj.split('|');
+                                return (
+                                    <View key={index} style={[styles.cell, styles.dateCell, styles.headerCell, { width: colWidth }]}>
+                                        <Text style={styles.headerDateText}>
+                                            {/* Format: 2026-02-18 -> 18/02 */}
+                                            {dateStr.split('-').slice(1).reverse().join('/')}
+                                        </Text>
+                                        <Text style={styles.headerSessionText}>
+                                            S{sessionStr}
+                                        </Text>
+                                    </View>
+                                )
+                            })}
+
+                            <View style={[styles.cell, styles.headerCell, { width: colWidth * 1.5, borderLeftWidth: 2, borderLeftColor: '#f1f5f9' }]}>
+                                <Text style={styles.headerText}>Overall %</Text>
+                            </View>
                         </View>
 
                         {/* Data Rows */}
                         {students.map((student, rowIndex) => (
                             <View key={rowIndex} style={styles.row}>
                                 <View style={[styles.cell, styles.nameCell, { width: nameColWidth }]}>
-                                    <Text style={styles.nameText} numberOfLines={1}>{student.name}</Text>
+                                    <Text style={styles.nameText}>{student.name}</Text>
                                     <Text style={styles.rollText}>{student.roll}</Text>
                                 </View>
                                 {dates.map((date, colIndex) => {
@@ -108,12 +143,47 @@ export default function SubjectDashboard() {
                                         textColor = '#1d4ed8'; // Blue-700
                                     }
 
+                                    const hasColor = status === 'P' || status === 'A' || status === 'O';
+                                    const bColor = hasColor ? cellBg : '#f1f5f9';
+
                                     return (
-                                        <View key={colIndex} style={[styles.cell, { width: colWidth, backgroundColor: cellBg }]}>
+                                        <View key={colIndex} style={[styles.cell, {
+                                            width: colWidth,
+                                            backgroundColor: cellBg,
+                                            borderBottomWidth: 1,
+                                            borderBottomColor: bColor,
+                                            borderRightWidth: 1,
+                                            borderRightColor: bColor
+                                        }]}>
                                             <Text style={[styles.statusText, { color: textColor }]}>{status}</Text>
                                         </View>
                                     );
                                 })}
+
+                                {/* Percentage Column */}
+                                {(() => {
+                                    const totalSessions = dates.length;
+                                    const presentAndOd = dates.filter(d => student.attendance[d] === 'P' || student.attendance[d] === 'O').length;
+                                    const percent = totalSessions > 0 ? ((presentAndOd / totalSessions) * 100).toFixed(1) : 0;
+                                    const isWarning = totalSessions > 0 && percent < 75;
+
+                                    return (
+                                        <View style={[styles.cell, {
+                                            width: colWidth * 1.5,
+                                            borderLeftWidth: 2,
+                                            borderLeftColor: '#f1f5f9',
+                                            backgroundColor: isWarning ? '#fee2e2' : '#fff',
+                                            borderBottomWidth: 1,
+                                            borderBottomColor: '#f1f5f9',
+                                            borderRightWidth: 1,
+                                            borderRightColor: '#f1f5f9'
+                                        }]}>
+                                            <Text style={[styles.statusText, { color: isWarning ? '#b91c1c' : COLORS.text, fontWeight: isWarning ? '800' : '600' }]}>
+                                                {totalSessions > 0 ? `${percent}%` : '-'}
+                                            </Text>
+                                        </View>
+                                    );
+                                })()}
                             </View>
                         ))}
                     </View>
@@ -139,14 +209,14 @@ export default function SubjectDashboard() {
                 // style={[styles.tab, activeTab === 'summary' && styles.activeTab]} 
                 >
                     <Text style={[styles.tabText, activeTab === 'summary' && styles.activeTabText]}>Summary</Text>
-                    <View style={activeTab === 'summary' ? styles.activeUnderline : {}} />
+                    <View style={[styles.activeUnderline, { backgroundColor: activeTab === 'summary' ? COLORS.accent : 'transparent' }]} />
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={[styles.tab]}
                     onPress={() => setActiveTab('sheet')}
                 >
                     <Text style={[styles.tabText, activeTab === 'sheet' && styles.activeTabText]}>Attendance Sheet</Text>
-                    <View style={activeTab === 'sheet' ? styles.activeUnderline : {}} />
+                    <View style={[styles.activeUnderline, { backgroundColor: activeTab === 'sheet' ? COLORS.accent : 'transparent' }]} />
                 </TouchableOpacity>
             </View>
 
@@ -158,8 +228,8 @@ export default function SubjectDashboard() {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#fff' },
-    header: { padding: 20, paddingBottom: 10, backgroundColor: '#fff', paddingTop: 60 },
+    container: { flex: 1, backgroundColor: '#fdfdfd' },
+    header: { padding: 20, paddingBottom: 10, backgroundColor: '#fff' },
     backButton: { marginBottom: 8, padding: 4 },
     backButtonText: { color: COLORS.accent, fontSize: 16, fontWeight: '600' },
 
@@ -169,7 +239,7 @@ const styles = StyleSheet.create({
     tabText: { fontSize: 14, fontWeight: '600', color: COLORS.muted },
     activeTabText: { color: COLORS.accent },
 
-    content: { flex: 1, padding: 16 },
+    content: { flex: 1, backgroundColor: '#fff' },
     tabContent: { flex: 1 },
 
     summaryCard: { padding: 24, alignItems: 'center', backgroundColor: '#f8fafc', borderRadius: 16 },
@@ -182,15 +252,16 @@ const styles = StyleSheet.create({
     placeholderText: { textAlign: 'center', marginTop: 40, color: COLORS.muted, fontStyle: 'italic' },
 
     sheetContainer: { flex: 1 },
-    headerRow: { flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#e2e8f0', backgroundColor: '#f8fafc' },
-    row: { flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#f1f5f9', alignItems: 'center' },
+    headerRow: { flexDirection: 'row', backgroundColor: '#f8fafc' },
+    row: { flexDirection: 'row', alignItems: 'stretch' },
 
-    cell: { height: 40, justifyContent: 'center', alignItems: 'center', borderRightWidth: 1, borderRightColor: '#f1f5f9' },
-    nameCell: { paddingHorizontal: 8, alignItems: 'flex-start', backgroundColor: '#fff', zIndex: 10 },
-    headerCell: { backgroundColor: '#f8fafc' },
+    cell: { minHeight: 48, paddingVertical: 8, justifyContent: 'center', alignItems: 'center' },
+    nameCell: { paddingHorizontal: 12, alignItems: 'flex-start', justifyContent: 'center', backgroundColor: '#fff', zIndex: 10, borderBottomWidth: 1, borderBottomColor: '#f1f5f9', borderRightWidth: 1, borderRightColor: '#f1f5f9' },
+    headerCell: { backgroundColor: '#f8fafc', borderBottomWidth: 1, borderBottomColor: '#e2e8f0', borderRightWidth: 1, borderRightColor: '#e2e8f0' },
 
     headerText: { fontWeight: '700', fontSize: 12, color: COLORS.text },
-    headerDateText: { fontWeight: '600', fontSize: 10, color: COLORS.muted },
+    headerDateText: { fontWeight: '600', fontSize: 11, color: COLORS.text },
+    headerSessionText: { fontWeight: '700', fontSize: 10, color: COLORS.muted, marginTop: 2 },
 
     nameText: { fontWeight: '700', fontSize: 12, color: COLORS.text },
     rollText: { fontSize: 10, color: COLORS.muted },

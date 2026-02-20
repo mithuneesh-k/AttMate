@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { COLORS, GLOBAL_STYLES } from '../styles/theme';
 import { useAuth } from '../context/AuthContext';
 import api from '../api';
+import BottomNav from '../components/BottomNav';
 
 export default function TeacherHome() {
     const navigation = useNavigation();
@@ -13,18 +14,23 @@ export default function TeacherHome() {
 
     useEffect(() => {
         const fetchClasses = async () => {
-            if (!user?.id) return;
+            console.log("TeacherHome: Fetching classes for user:", user);
+            if (!user?.id) {
+                console.log("TeacherHome: No user ID found");
+                return;
+            }
             try {
                 const response = await api.get(`/teacher/my-classes?user_id=${user.id}`);
+                console.log("TeacherHome: API Response:", JSON.stringify(response.data, null, 2));
                 setClasses(response.data);
             } catch (error) {
-                console.error('Failed to fetch teacher classes:', error);
+                console.error('TeacherHome: Failed to fetch teacher classes:', error);
             } finally {
                 setLoading(false);
             }
         };
-        fetchClasses();
-    }, [user?.id]);
+        if (user) fetchClasses();
+    }, [user]);
 
     const renderItem = ({ item }) => (
         <View style={[GLOBAL_STYLES.card, styles.classCard]}>
@@ -75,6 +81,7 @@ export default function TeacherHome() {
                     showsVerticalScrollIndicator={false}
                 />
             )}
+            <BottomNav />
         </View>
     );
 }

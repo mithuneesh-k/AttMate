@@ -3,7 +3,9 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { COLORS, GLOBAL_STYLES } from '../styles/theme';
 import { useAuth } from '../context/AuthContext';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import api from '../api';
+import BottomNav from '../components/BottomNav';
 
 export default function ClassDashboard() {
     const navigation = useNavigation();
@@ -15,22 +17,51 @@ export default function ClassDashboard() {
     // 1. Context: Use class_id from route params or user context
     // For now, let's assume we pass classId in navigation. 
     // If not, we'll need a way to find "my advisory class"
-    const classId = route.params?.classId;
+    const [currentClassId, setCurrentClassId] = useState(route.params?.classId || null);
 
     useEffect(() => {
-        if (classId) {
-            fetchClassStats();
-        } else {
-            setLoading(false);
+        if (route.params?.classId) {
+            setCurrentClassId(route.params.classId);
         }
-    }, [classId]);
+    }, [route.params?.classId]);
 
-    const fetchClassStats = async () => {
+    useEffect(() => {
+        const init = async () => {
+            if (!user?.id) return;
+
+            let targetId = currentClassId;
+
+            // If no classId passed (e.g. from Tab), fetch advisory class
+            if (!targetId) {
+                try {
+                    const res = await api.get(`/teacher/my-advisory-class?user_id=${user.id}`);
+                    if (res.data) {
+                        targetId = res.data.id;
+                        setCurrentClassId(targetId);
+                        // Also update navigation title if possible, or state to show Class Name
+                    }
+                } catch (e) {
+                    console.log("Failed to get advisory class", e);
+                }
+            }
+
+            if (targetId) {
+                fetchClassStats(targetId);
+            } else {
+                setLoading(false);
+            }
+        };
+        init();
+    }, [user, currentClassId]);
+
+    const fetchClassStats = async (id) => {
         try {
-            const response = await api.get(`/teacher/class-stats/${classId}`);
+            console.log(`ClassDashboard: Fetching stats for class ${id}, user ${user.id}`);
+            const response = await api.get(`/teacher/class-stats/${id}?user_id=${user.id}`);
+            console.log("ClassDashboard: Stats received:", response.data);
             setStats(response.data);
         } catch (error) {
-            console.error('Failed to fetch class stats:', error);
+            console.error('ClassDashboard: Failed to fetch class stats:', error);
         } finally {
             setLoading(false);
         }
@@ -44,7 +75,7 @@ export default function ClassDashboard() {
         );
     }
 
-    if (!classId && !loading) {
+    if (!currentClassId && !loading) {
         return (
             <View style={[styles.container, styles.center]}>
                 <View style={styles.emptyIconArea}>
@@ -59,7 +90,7 @@ export default function ClassDashboard() {
         );
     }
 
-    const { overall, subjects } = stats;
+    const { overall = 0, subjects = [] } = stats || {};
     const targetClassName = route.params?.className || 'Class';
 
     return (
@@ -110,7 +141,7 @@ export default function ClassDashboard() {
                         <TouchableOpacity
                             key={index}
                             style={[GLOBAL_STYLES.card, styles.subjectCard]}
-                            onPress={() => navigation.navigate('SubjectDashboard', { classId, subject: sub.name, days: sub.working_days, percent: sub.attendance })}
+                            onPress={() => navigation.navigate('SubjectDashboard', { classId: currentClassId, subject: sub.name, subjectId: sub.id, days: sub.working_days, percent: sub.attendance })}
                             activeOpacity={0.8}
                         >
                             <View style={styles.subjectTop}>
@@ -131,6 +162,7 @@ export default function ClassDashboard() {
                 </View>
                 <View style={{ height: 100 }} />
             </ScrollView>
+            <BottomNav />
         </View>
     );
 }

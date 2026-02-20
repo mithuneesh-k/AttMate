@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS, GLOBAL_STYLES } from '../styles/theme';
 import { useAuth } from '../context/AuthContext';
+import BottomNav from '../components/BottomNav';
 
 export default function Profile() {
     const navigation = useNavigation();
@@ -31,38 +33,19 @@ export default function Profile() {
                 </View>
 
                 <View style={styles.statsRow}>
-                    <View style={[GLOBAL_STYLES.card, styles.statMiniCard]}>
+                    <View style={[GLOBAL_STYLES.card, styles.statMiniCard, { width: '48%' }]}>
                         <Text style={styles.statNumber}>{user.role === 'admin' ? 'Active' : (user.subjects?.length || '—')}</Text>
                         <Text style={styles.statLabel}>{user.role === 'admin' ? 'Admin' : 'Subjects'}</Text>
                     </View>
-                    <View style={[GLOBAL_STYLES.card, styles.statMiniCard]}>
-                        <Text style={styles.statNumber}>—</Text>
+                    <View style={[GLOBAL_STYLES.card, styles.statMiniCard, { width: '48%' }]}>
+                        <Text style={styles.statNumber}>{user.role === 'admin' ? 'System' : (user.classes?.length || '—')}</Text>
                         <Text style={styles.statLabel}>Classes</Text>
-                    </View>
-                    <View style={[GLOBAL_STYLES.card, styles.statMiniCard]}>
-                        <Text style={styles.statNumber}>—</Text>
-                        <Text style={styles.statLabel}>Avg. Att.</Text>
                     </View>
                 </View>
 
 
                 <View style={styles.section}>
                     <Text style={styles.sectionTitle}>Account Settings</Text>
-                    <TouchableOpacity style={[GLOBAL_STYLES.card, styles.menuItem]}>
-                        <View style={styles.menuIconArea}>
-                            <Text style={styles.menuIcon}>🔔</Text>
-                        </View>
-                        <Text style={styles.menuText}>Notifications</Text>
-                        <Text style={styles.chevron}>➔</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={[GLOBAL_STYLES.card, styles.menuItem]}>
-                        <View style={styles.menuIconArea}>
-                            <Text style={styles.menuIcon}>🛡️</Text>
-                        </View>
-                        <Text style={styles.menuText}>Security & Privacy</Text>
-                        <Text style={styles.chevron}>➔</Text>
-                    </TouchableOpacity>
 
                     <TouchableOpacity style={[GLOBAL_STYLES.card, styles.menuItem]}>
                         <View style={styles.menuIconArea}>
@@ -88,6 +71,7 @@ export default function Profile() {
                 </View>
                 <View style={{ height: 100 }} />
             </ScrollView>
+            <BottomNav />
         </View>
     );
 }

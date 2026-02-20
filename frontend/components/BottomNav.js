@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '../styles/theme';
 
 export default function BottomNav() {
@@ -9,25 +10,27 @@ export default function BottomNav() {
 
     const tabs = [
         { name: 'Chat', route: 'TeacherHome', icon: '💬' },
-        { name: 'Dashboard', route: 'ClassDashboard', icon: '📊' },
+        { name: 'My Class', route: 'ClassDashboard', icon: '📊' },
         { name: 'Profile', route: 'Profile', icon: '👤' },
     ];
 
     const isActive = (routeName) => route.name === routeName;
 
     return (
-        <View style={styles.container}>
-            {tabs.map((tab) => (
-                <TouchableOpacity
-                    key={tab.name}
-                    style={[styles.navItem, isActive(tab.route) && styles.navItemActive]}
-                    onPress={() => navigation.navigate(tab.route)}
-                >
-                    <Text style={[styles.navIcon, isActive(tab.route) && styles.navTextActive]}>{tab.icon}</Text>
-                    <Text style={[styles.navText, isActive(tab.route) && styles.navTextActive]}>{tab.name}</Text>
-                </TouchableOpacity>
-            ))}
-        </View>
+        <SafeAreaView edges={['bottom']} style={{ backgroundColor: '#fff' }}>
+            <View style={styles.container}>
+                {tabs.map((tab) => (
+                    <TouchableOpacity
+                        key={tab.name}
+                        style={[styles.navItem, isActive(tab.route) && styles.navItemActive]}
+                        onPress={() => navigation.navigate(tab.route)}
+                    >
+                        <Text style={[styles.navIcon, isActive(tab.route) && styles.navTextActive]}>{tab.icon}</Text>
+                        <Text style={[styles.navText, isActive(tab.route) && styles.navTextActive]}>{tab.name}</Text>
+                    </TouchableOpacity>
+                ))}
+            </View>
+        </SafeAreaView>
     );
 }
 

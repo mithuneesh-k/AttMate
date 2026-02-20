@@ -76,6 +76,7 @@ class Attendance(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     date = Column(Date, index=True)
+    session_n = Column(Integer, default=1, index=True)
     status = Column(String(10)) # Present, Absent, OD
     student_id = Column(Integer, ForeignKey("students.id"))
     class_id = Column(Integer, ForeignKey("classes.id"))

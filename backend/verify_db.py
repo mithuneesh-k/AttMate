@@ -12,6 +12,35 @@ def verify():
         classes = db.query(models.Class).all()
         class_names = [c.name for c in classes]
         
+        # 1. Check Specific Faculty (Sanjay Krishna)
+        target_email = "sanjay.krishna@attmate.com"
+        user = db.query(models.User).filter(models.User.email == target_email).first()
+        print(f"\n--- Checking User: {target_email} ---")
+        if not user:
+            print("❌ User not found!")
+        else:
+            print(f"User ID: {user.id}")
+            faculty = user.faculty_profile
+            if not faculty:
+                print("❌ No faculty profile linked!")
+            else:
+                print(f"Faculty: {faculty.name} (ID: {faculty.id})")
+                
+                # Check Assignments
+                assignments = db.query(models.FacultySubject).filter(
+                    models.FacultySubject.faculty_id == faculty.id
+                ).all()
+                
+                print(f"Found {len(assignments)} assignments:")
+                if not assignments:
+                    print("❌ No classes assigned!")
+                    
+                for a in assignments:
+                    cls = db.query(models.Class).filter(models.Class.id == a.class_id).first()
+                    sub = db.query(models.Subject).filter(models.Subject.id == a.subject_id).first()
+                    print(f"  - Class: {cls.name if cls else 'Unknown'}")
+                    print(f"    Subject: {sub.name if sub else 'Unknown'}")
+
         print(f"Student Count: {student_count}")
         print(f"Class Count: {class_count}")
         print(f"Faculty Count: {faculty_count}")

@@ -59,19 +59,24 @@ class SmartAttendanceParser:
                 'pattern': re.compile(r'(?:everyone|all)\s+(?:is\s+)?absent\s+except\s+([\d,\s]+)', re.IGNORECASE),
                 'type': 'except_absent'
             },
-            # Pattern 6: "Mark 101 and 102 as absent"
+            # Pattern 6: Multiple distinct lists: "144, 155 Od. 188 absent"
+            {
+                'pattern': re.compile(r'((?:\d+\s*(?:,|and|&|\.)?\s*)+)\s+(absent|present|od|on\s*duty|leave)', re.IGNORECASE),
+                'type': 'multiple_lists'
+            },
+            # Pattern 7: "Mark 101 and 102 as absent"
             {
                 'pattern': re.compile(r'(?:mark\s+)?(\d+(?:\s*(?:and|,)\s*\d+)*)\s+(?:as\s+)?(absent|present|od|on\s*duty|leave)', re.IGNORECASE),
                 'type': 'natural_list'
             },
-            # Pattern 7: "101, 102, 103 absent"
+            # Pattern 8: "101, 102, 103 absent" or "1,2 absent"
             {
-                'pattern': re.compile(r'([\d,\s]+)\s+(absent|present|od|on\s*duty|leave)', re.IGNORECASE),
+                'pattern': re.compile(r'([\d,\s]+?)\s+(absent|present|od|on\s*duty|leave)', re.IGNORECASE),
                 'type': 'simple_list'
             },
-            # Pattern 8: "Students 111, 112 are absent"
+            # Pattern 9: "Students 111, 112 are absent"
             {
-                'pattern': re.compile(r'(?:students?\s+)?([\d,\s]+)\s+(?:is|are|was|were)\s+(absent|present|od|on\s*duty|leave)', re.IGNORECASE),
+                'pattern': re.compile(r'(?:students?\s+)?([\d,\s]+?)\s+(?:is|are|was|were)\s+(absent|present|od|on\s*duty|leave)', re.IGNORECASE),
                 'type': 'simple_list'
             },
         ]
@@ -93,7 +98,7 @@ class SmartAttendanceParser:
         # Try each pattern
         for pattern_info in self.compiled_patterns:
             result = self._try_pattern(message, pattern_info, class_id, subject_id)
-            if result and result.get('roll_numbers'):
+            if result and (result.get('roll_numbers') or result.get('entries')):
                 return result
         
         # If no pattern matched, return error
@@ -103,7 +108,26 @@ class SmartAttendanceParser:
         }
     
     def _try_pattern(self, message: str, pattern_info: Dict, class_id: int, subject_id: int) -> Optional[Dict[str, Any]]:
-        """Try to match a specific pattern."""
+        # 1. First, check for multiple lists explicitly before loop
+        multiple_lists_pattern = re.compile(r'((?:\d+\s*(?:,|and|&|\.)?\s*)+)\s+(absent|present|od|on\s*duty|leave)', re.IGNORECASE)
+        matches = multiple_lists_pattern.findall(message)
+        if matches and len(matches) > 1:
+            entries = []
+            for roll_str, status_str in matches:
+                status = self._normalize_status(status_str)
+                rolls = self._extract_roll_numbers(roll_str)
+                for r in rolls:
+                    entries.append({'roll_number': r, 'status': status})
+            if entries:
+                return {
+                    'entries': entries,
+                    'class_id': class_id,
+                    'subject_id': subject_id,
+                    'confidence': 1.0,
+                    'pattern_type': 'multiple_lists' # Corrected pattern_type
+                }
+                
+        # The original loop structure for other patterns
         pattern = pattern_info['pattern']
         pattern_type = pattern_info['type']
         
@@ -117,7 +141,7 @@ class SmartAttendanceParser:
                 if len(statuses) > 1:
                     return self._parse_individual_multiple(matches, class_id, subject_id)
             return None
-        
+                    
         match = pattern.search(message)
         if not match:
             return None
@@ -235,7 +259,7 @@ class SmartAttendanceParser:
     
     def _normalize_status(self, status_str: str) -> str:
         """Normalize status string to standard format."""
-        status_str = status_str.lower().strip()
+        status_str = re.sub(r'[^\w\s]', '', status_str).lower().strip()
         
         # Handle "on duty" variations
         if 'duty' in status_str or status_str == 'od':
@@ -258,15 +282,15 @@ class AdvancedAttendanceParser(SmartAttendanceParser):
     - Multi-language support (future)
     """
     
-    # Common typos and corrections
+    # Add typo corrections mapping
     TYPO_CORRECTIONS = {
-        'absnt': 'absent',
-        'abscent': 'absent',
-        'presen': 'present',
-        'presnt': 'present',
-        'od': 'od',
-        'o.d': 'od',
-        'o.d.': 'od',
+        'abssent': 'absent',
+        'absense': 'absent',
+        'abcent': 'absent',
+        'pressent': 'present',
+        'presunt': 'present',
+        'prezent': 'present',
+        'leve': 'leave'
     }
     
     def parse(self, message: str, class_id: int, subject_id: int) -> Dict[str, Any]:
