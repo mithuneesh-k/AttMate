@@ -41,6 +41,15 @@ app.add_middleware(
 def read_root():
     return {"message": "AttMate Backend is running!"}
 
+@app.get("/seed-db")
+def seed_remote_db():
+    import os
+    try:
+        os.system("python seed_db.py")
+        return {"message": "Database seeding triggered successfully. Please try logging in now."}
+    except Exception as e:
+        return {"error": str(e)}
+
 # --- AUTH ---
 @app.post("/login")
 def login(login_data: schemas.UserCreate, db: Session = Depends(database.get_db)):
