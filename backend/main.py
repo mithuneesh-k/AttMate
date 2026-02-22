@@ -145,6 +145,18 @@ def create_subject(sub: schemas.SubjectCreate, db: Session = Depends(database.ge
     db.refresh(db_sub)
     return db_sub
 
+@app.post("/admin/reset-history")
+def reset_history(db: Session = Depends(database.get_db)):
+    """Reset all attendance and chat history."""
+    try:
+        db.query(models.Attendance).delete()
+        db.query(models.ChatMessage).delete()
+        db.commit()
+        return {"message": "Attendance and chat history reset successfully"}
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
+
 # --- TEACHER ENDPOINTS ---
 @app.get("/teacher/my-classes")
 def get_teacher_classes(user_id: int, db: Session = Depends(database.get_db)):
@@ -616,19 +628,28 @@ def get_subject_student_stats(class_id: int, subject_name: str, db: Session = De
     result = []
     
     for s in students:
+        # 1. Total Working Days (Sessions where student SHOULD have been present)
+        # We query unique dates for this subject and class
+        working_days = db.query(models.Attendance.date).filter(
+            models.Attendance.class_id == class_id,
+            models.Attendance.subject_id == subject.id
+        ).distinct().count()
+
+        # 2. Present Count (Present + OD)
         p_count = db.query(models.Attendance).filter(
             models.Attendance.student_id == s.id,
             models.Attendance.subject_id == subject.id,
-            models.Attendance.status == "Present"
+            func.lower(models.Attendance.status).in_(['present', 'od', 'p', 'o'])
         ).count()
+
+        # 3. Absent Count
         a_count = db.query(models.Attendance).filter(
             models.Attendance.student_id == s.id,
             models.Attendance.subject_id == subject.id,
-            models.Attendance.status == "Absent"
+            func.lower(models.Attendance.status).in_(['absent', 'a'])
         ).count()
         
-        total = p_count + a_count
-        percent = round((p_count / total * 100), 1) if total > 0 else 0
+        percent = round((p_count / working_days * 100), 1) if working_days > 0 else 0
         
         result.append({
             "roll_number": s.roll_number,
