@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, ActivityIndicator, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, ActivityIndicator, KeyboardAvoidingView, Platform, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { COLORS, GLOBAL_STYLES } from '../styles/theme';
@@ -51,9 +51,7 @@ export default function LoginScreen() {
                 <View style={styles.content}>
                     {/* Immersive Brand Section */}
                     <View style={styles.brandSection}>
-                        <View style={styles.logo}>
-                            <View style={styles.logoInner} />
-                        </View>
+                        <Image source={require('../assets/logo.png')} style={styles.logoImage} />
                         <Text style={styles.brandTitle}>AttMate</Text>
                         <Text style={styles.brandTagline}>Classroom management, redefined.</Text>
                     </View>
@@ -131,16 +129,12 @@ const styles = StyleSheet.create({
     flex: { flex: 1 },
     content: { flex: 1, padding: 24, justifyContent: 'center' },
     brandSection: { alignItems: 'center', marginBottom: 40 },
-    logo: {
-        width: 64,
-        height: 64,
-        borderRadius: 20,
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 16
+    logoImage: {
+        width: 100,
+        height: 100,
+        marginBottom: 16,
+        resizeMode: 'contain'
     },
-    logoInner: { width: 30, height: 30, borderRadius: 8, backgroundColor: '#fff' },
     brandTitle: { fontSize: 32, fontWeight: '900', color: '#fff', letterSpacing: -1 },
     brandTagline: { fontSize: 14, color: 'rgba(255, 255, 255, 0.8)', fontWeight: '500' },
 

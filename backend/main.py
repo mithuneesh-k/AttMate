@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Depends, UploadFile, File, HTTPException
 from sqlalchemy.orm import Session
+from sqlalchemy import func, and_
 from sqlalchemy.exc import OperationalError
 from typing import List
 import pandas as pd
@@ -250,8 +251,7 @@ def get_class_stats(class_id: int, user_id: int, db: Session = Depends(database.
         sub = db.query(models.Subject).filter(models.Subject.id == a.subject_id).first()
         
         # 1. Calculate Total Sessions (Unique Dates)
-        # 1. Calculate Total Sessions (Unique Dates + Sessions)
-        sessions_query = db.query(models.Attendance.date, models.Attendance.session_n).filter(
+        sessions_query = db.query(models.Attendance.date).filter(
             models.Attendance.class_id == class_id,
             models.Attendance.subject_id == sub.id
         ).distinct().all()
@@ -329,25 +329,53 @@ async def chat_interaction(
     # List to track students who were marked (absent/od/present)
     marked_student_ids = []
 
-    # Calculate session_n for today
+    # Calculate start of day for queries
     today_start = datetime.combine(today, datetime.min.time())
-    
-    from sqlalchemy import func
-    session_match = re.search(r'session\s*(\d+)', message, re.IGNORECASE)
-    if session_match:
-        current_session_n = int(session_match.group(1))
-    else:
-        max_s = db.query(func.max(models.Attendance.session_n)).filter(
-            models.Attendance.class_id == class_id,
-            models.Attendance.subject_id == subject_id,
-            models.Attendance.date == today
-        ).scalar()
-        current_session_n = max_s if max_s else 1
 
     # Check if parsing was successful
     if "error" not in parse_result:
-        # 1. PROCESS EXPLICIT ENTRIES
-        entries_to_process = []
+        
+        # 1. HANDLE DATA FETCHING QUERIES
+        if parse_result.get('pattern_type') == 'query':
+            query_status = parse_result.get('status', 'Absent')
+            query_date_str = parse_result.get('query_date')
+            
+            # Resolve relative dates
+            target_date = today
+            if query_date_str:
+                query_date_str = query_date_str.lower()
+                if query_date_str == 'yesterday':
+                    import datetime as dt
+                    target_date = today - dt.timedelta(days=1)
+                elif query_date_str != 'today':
+                    try:
+                        # Try parsing common date formats
+                        from dateutil import parser as dt_parser
+                        parsed_dt = dt_parser.parse(query_date_str)
+                        target_date = parsed_dt.date()
+                    except:
+                        pass # Fallback to today if unparseable
+                        
+            # Query the database
+            records = db.query(models.Attendance, models.Student)\
+                        .join(models.Student, models.Attendance.student_id == models.Student.id)\
+                        .filter(models.Attendance.class_id == class_id,
+                                models.Attendance.subject_id == subject_id,
+                                models.Attendance.date == target_date,
+                                func.lower(models.Attendance.status) == query_status.lower())\
+                        .all()
+            
+            if records:
+                students_list = ", ".join([student.name for att, student in records])
+                response_text = f"The following students were marked {query_status} on {target_date.strftime('%b %d, %Y')}:\n{students_list}"
+            else:
+                response_text = f"Nobody was marked {query_status} on {target_date.strftime('%b %d, %Y')}."
+                
+            processed_count = len(records)
+            
+        # 2. PROCESS EXPLICIT ENTRIES (WRITE MODES)
+        else:
+            entries_to_process = []
         
         if parse_result.get('pattern_type') == 'multiple_individual':
             entries = parse_result.get('entries', [])
@@ -384,18 +412,16 @@ async def chat_interaction(
                 marked_student_ids.append(student.id)
                 processed_students.append(roll)
                 
-                # Check if record exists for this session
+                # Check if record exists for today
                 att = db.query(models.Attendance).filter(
                     models.Attendance.student_id == student.id,
                     models.Attendance.date == today,
-                    models.Attendance.session_n == current_session_n,
                     models.Attendance.subject_id == subject_id
                 ).first()
                 
                 if not att:
                     att = models.Attendance(
                         date=today,
-                        session_n=current_session_n,
                         status=status,
                         student_id=student.id,
                         class_id=class_id,
@@ -424,18 +450,16 @@ async def chat_interaction(
 
             auto_present_count = 0
             for student in all_students:
-                # Check/Create attendance 'Present' for this session
+                # Check/Create attendance 'Present' for today
                 att = db.query(models.Attendance).filter(
                     models.Attendance.student_id == student.id,
                     models.Attendance.date == today,
-                    models.Attendance.session_n == current_session_n,
                     models.Attendance.subject_id == subject_id
                 ).first()
                 
                 if not att:
                     att = models.Attendance(
                         date=today,
-                        session_n=current_session_n,
                         status="Present",
                         student_id=student.id,
                         class_id=class_id,
@@ -485,15 +509,15 @@ def get_attendance_sheet(class_id: int, subject_id: int, db: Session = Depends(d
     # 1. Get all students in class
     students = db.query(models.Student).filter(models.Student.class_id == class_id).order_by(models.Student.roll_number).all()
     
-    # 2. Get all distinct (date, session_n) combinations for this subject and class
-    # We want sessions where at least one attendance record exists
-    dates_query = db.query(models.Attendance.date, models.Attendance.session_n).filter(
+    # 2. Get all distinct dates for this subject and class
+    # We want dates where at least one attendance record exists
+    dates_query = db.query(models.Attendance.date).filter(
         models.Attendance.class_id == class_id,
         models.Attendance.subject_id == subject_id
-    ).distinct().order_by(models.Attendance.date.asc(), models.Attendance.session_n.asc()).all()
+    ).distinct().order_by(models.Attendance.date.asc()).all()
     
-    # Store as string "YYYY-MM-DD|SESSION"
-    dates = [f"{d[0].isoformat()}|{d[1]}" for d in dates_query]
+    # Store as string "YYYY-MM-DD"
+    dates = [f"{d[0].isoformat()}" for d in dates_query]
 
     # 3. Build the grid
     # Row: { name: "Student Name", roll: "101", "2026-02-18|1": "P", "2026-02-18|2": "A", ... }
@@ -513,8 +537,8 @@ def get_attendance_sheet(class_id: int, subject_id: int, db: Session = Depends(d
             models.Attendance.subject_id == subject_id
         ).all()
         
-        # Map "date|session" to status
-        att_map = {f"{rec.date.isoformat()}|{rec.session_n}": rec.status for rec in recs}
+        # Map "date" to status
+        att_map = {f"{rec.date.isoformat()}": rec.status for rec in recs}
         
         for d_key in dates:
             status = att_map.get(d_key, "-") # - for no record
@@ -551,15 +575,6 @@ def get_chat_history(
         models.ChatMessage.subject_id == subject_id
     ).order_by(models.ChatMessage.timestamp.asc()).limit(limit).all()
     
-    from sqlalchemy import func
-    max_s = db.query(func.max(models.Attendance.session_n)).filter(
-        models.Attendance.class_id == class_id,
-        models.Attendance.subject_id == subject_id,
-        models.Attendance.date == today
-    ).scalar()
-    
-    session_n = max_s if max_s else 1
-    
     msgs_out = [
         {
             "id": msg.id,
@@ -572,8 +587,7 @@ def get_chat_history(
     
     return {
         "status": "success",
-        "messages": msgs_out,
-        "current_session": session_n
+        "messages": msgs_out
     }
 
 

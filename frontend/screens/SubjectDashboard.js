@@ -88,10 +88,11 @@ export default function SubjectDashboard() {
         const nameColWidth = 160;
 
         return (
-            <ScrollView style={styles.sheetContainer} nestedScrollEnabled={true}>
+            <ScrollView style={styles.sheetContainer} nestedScrollEnabled={true} contentContainerStyle={{ flexGrow: 1 }}>
                 <ScrollView
                     horizontal={true}
                     showsHorizontalScrollIndicator={true}
+                    contentContainerStyle={{ flexGrow: 1 }}
                     style={Platform.OS === 'web' ? { overflowX: 'auto' } : {}}
                 >
                     <View>

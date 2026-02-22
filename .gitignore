@@ -26,3 +26,10 @@ yarn-error.log
 Thumbs.db
 .idea/
 .vscode/
+
+# Logs
+*.txt
+*.webp
+*.png
+!frontend/assets/logo.png
+!frontend/assets/icon.png

@@ -42,7 +42,7 @@ export default function AdminDashboard() {
     }
 
     return (
-        <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+        <ScrollView style={styles.container} contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
             <View style={styles.header}>
                 <Text style={GLOBAL_STYLES.title}>Admin Panel</Text>
                 <Text style={GLOBAL_STYLES.subtitle}>Overview of institution departments and classes.</Text>
@@ -98,6 +98,7 @@ export default function AdminDashboard() {
 
 const styles = StyleSheet.create({
     container: { flex: 1, backgroundColor: '#fff' },
+    scrollContent: { flexGrow: 1 },
     header: { padding: 24, paddingBottom: 0 },
     statsGrid: {
         flexDirection: 'row',

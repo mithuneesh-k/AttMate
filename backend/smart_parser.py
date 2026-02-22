@@ -79,6 +79,11 @@ class SmartAttendanceParser:
                 'pattern': re.compile(r'(?:students?\s+)?([\d,\s]+?)\s+(?:is|are|was|were)\s+(absent|present|od|on\s*duty|leave)', re.IGNORECASE),
                 'type': 'simple_list'
             },
+            # Pattern 10: "Who was absent on 2026-02-21?" or "which students were od today"
+            {
+                'pattern': re.compile(r'(?:who|which)\s+(?:students?\s+)?(?:was|were|is|are)\s+(absent|present|od|on\s*duty|leave)\s+(?:on|for)?\s*(today|yesterday|\d{1,2}[-/]\d{1,2}[-/]\d{2,4}|\d{4}[-/]\d{2}[-/]\d{2})?\s*\??', re.IGNORECASE),
+                'type': 'query'
+            },
         ]
     
     def parse(self, message: str, class_id: int, subject_id: int) -> Dict[str, Any]:
@@ -156,6 +161,8 @@ class SmartAttendanceParser:
             return self._parse_except(match, class_id, subject_id, 'absent')
         elif pattern_type == 'except_absent':
             return self._parse_except(match, class_id, subject_id, 'present')
+        elif pattern_type == 'query':
+            return self._parse_query(match, class_id, subject_id)
         
         return None
     
@@ -230,6 +237,23 @@ class SmartAttendanceParser:
             'pattern_type': 'exception',
             'note': 'Only marking exceptions. Others assumed opposite status.'
         }
+        
+    def _parse_query(self, match: re.Match, class_id: int, subject_id: int) -> Dict[str, Any]:
+        """Parse data-fetching queries: 'Who was absent on 2026-02-21?'"""
+        status_str = match.group(1)
+        date_str = match.group(2) if match.lastindex >= 2 else None
+        
+        status = self._normalize_status(status_str)
+        
+        return {
+            'status': status,
+            'query_date': date_str,
+            'class_id': class_id,
+            'subject_id': subject_id,
+            'confidence': 1.0,
+            'pattern_type': 'query',
+            'note': 'This is a read-only query intended to fetch records, not modify them.'
+        }
     
     def _parse_individual_multiple(self, matches: List[Tuple], class_id: int, subject_id: int) -> Dict[str, Any]:
         """Parse multiple individual entries: '101 absent, 102 od, 103 present'"""
@@ -295,6 +319,12 @@ class AdvancedAttendanceParser(SmartAttendanceParser):
     
     def parse(self, message: str, class_id: int, subject_id: int) -> Dict[str, Any]:
         """Parse with typo correction."""
+        
+        # FAST PATH: Data Fetching Queries. Do not mangle interrogative sentences.
+        msg_lower = message.lower().strip()
+        if msg_lower.startswith('who') or msg_lower.startswith('which'):
+            return super().parse(message, class_id, subject_id)
+            
         # Apply typo corrections
         message_corrected = message
         for typo, correction in self.TYPO_CORRECTIONS.items():

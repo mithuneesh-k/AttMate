@@ -77,7 +77,7 @@ export default function Profile() {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#fff', height: '100%' },
+    container: { flex: 1, backgroundColor: '#fff' },
     scrollContent: { flexGrow: 1 },
     header: { alignItems: 'center', paddingVertical: 40, borderBottomWidth: 1, borderBottomColor: '#f1f5f9' },
     avatarContainer: { width: 100, height: 100, borderRadius: 32, justifyContent: 'center', alignItems: 'center', marginBottom: 20 },

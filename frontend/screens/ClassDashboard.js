@@ -168,7 +168,7 @@ export default function ClassDashboard() {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#fff', height: '100%' },
+    container: { flex: 1, backgroundColor: '#fff' },
     scrollContent: { flexGrow: 1 },
     header: { padding: 24, paddingBottom: 12 },
     overallCard: { margin: 24, marginTop: 0, padding: 24 },
