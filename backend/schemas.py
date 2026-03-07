@@ -110,3 +110,20 @@ class ChatMessage(ChatMessageBase):
     
     class Config:
         orm_mode = True
+
+class SessionLogBase(BaseModel):
+    date: date
+    content: str
+    class_id: int
+    subject_id: int
+    faculty_id: int
+
+class SessionLogCreate(SessionLogBase):
+    pass
+
+class SessionLog(SessionLogBase):
+    id: int
+    timestamp: datetime
+
+    class Config:
+        orm_mode = True

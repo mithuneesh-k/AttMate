@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, Platform } from 'react-native';
+
 import { useNavigation } from '@react-navigation/native';
 import { COLORS, GLOBAL_STYLES } from '../styles/theme';
 import api from '../api';
@@ -42,7 +43,9 @@ export default function AdminDashboard() {
     }
 
     return (
-        <ScrollView style={styles.container} contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+        <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={true}>
+
+
             <View style={styles.header}>
                 <Text style={GLOBAL_STYLES.title}>Admin Panel</Text>
                 <Text style={GLOBAL_STYLES.subtitle}>Overview of institution departments and classes.</Text>
@@ -97,7 +100,11 @@ export default function AdminDashboard() {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#fff' },
+    container: {
+        flex: 1,
+        backgroundColor: '#f8fafc',
+    },
+
     scrollContent: { flexGrow: 1 },
     header: { padding: 24, paddingBottom: 0 },
     statsGrid: {

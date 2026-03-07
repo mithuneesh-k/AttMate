@@ -77,9 +77,9 @@ class Attendance(Base):
     id = Column(Integer, primary_key=True, index=True)
     date = Column(Date, index=True)
     status = Column(String(10)) # Present, Absent, OD
-    student_id = Column(Integer, ForeignKey("students.id"))
-    class_id = Column(Integer, ForeignKey("classes.id"))
-    subject_id = Column(Integer, ForeignKey("subjects.id"))
+    student_id = Column(Integer, ForeignKey("students.id"), index=True)
+    class_id = Column(Integer, ForeignKey("classes.id"), index=True)
+    subject_id = Column(Integer, ForeignKey("subjects.id"), index=True)
 
     student = relationship("Student", back_populates="attendance_records")
     class_ = relationship("Class", back_populates="attendance_records")
@@ -99,3 +99,18 @@ class ChatMessage(Base):
     class_ = relationship("Class", back_populates="chat_messages")
     subject = relationship("Subject")
     faculty = relationship("Faculty", back_populates="chat_messages")
+
+class SessionLog(Base):
+    __tablename__ = "session_logs"
+
+    id = Column(Integer, primary_key=True, index=True)
+    date = Column(Date, default=datetime.utcnow().date, index=True)
+    content = Column(String(2000))
+    class_id = Column(Integer, ForeignKey("classes.id"), index=True)
+    subject_id = Column(Integer, ForeignKey("subjects.id"), index=True)
+    faculty_id = Column(Integer, ForeignKey("faculty.id"), index=True)
+    timestamp = Column(DateTime, default=datetime.utcnow)
+
+    class_ = relationship("Class")
+    subject = relationship("Subject")
+    faculty = relationship("Faculty")

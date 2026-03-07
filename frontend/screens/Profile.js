@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Platform } from 'react-native';
+
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS, GLOBAL_STYLES } from '../styles/theme';
@@ -15,9 +16,11 @@ export default function Profile() {
     return (
         <View style={styles.container}>
             <ScrollView
+                style={{ flex: 1 }}
                 showsVerticalScrollIndicator={true}
                 contentContainerStyle={styles.scrollContent}
             >
+
                 <View style={styles.header}>
                     <View style={[styles.avatarContainer, { backgroundColor: user.avatarColor || '#16a34a' }]}>
                         <Text style={styles.avatarLetter}>{user.name?.charAt(0)}</Text>
@@ -77,7 +80,11 @@ export default function Profile() {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#fff' },
+    container: {
+        flex: 1,
+        backgroundColor: '#fdfdfd',
+    },
+
     scrollContent: { flexGrow: 1 },
     header: { alignItems: 'center', paddingVertical: 40, borderBottomWidth: 1, borderBottomColor: '#f1f5f9' },
     avatarContainer: { width: 100, height: 100, borderRadius: 32, justifyContent: 'center', alignItems: 'center', marginBottom: 20 },

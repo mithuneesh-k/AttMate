@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, ActivityIndicator, KeyboardAvoidingView, Platform, Image } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, ActivityIndicator, KeyboardAvoidingView, Platform, Image, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { COLORS, GLOBAL_STYLES } from '../styles/theme';
@@ -44,88 +44,103 @@ export default function LoginScreen() {
 
     return (
         <SafeAreaView style={styles.container}>
-            <KeyboardAvoidingView
-                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                style={styles.flex}
+            <ScrollView
+                style={{ flex: 1 }}
+                contentContainerStyle={{ flexGrow: 1 }}
+                showsVerticalScrollIndicator={true}
+                bounces={false}
             >
-                <View style={styles.content}>
-                    {/* Immersive Brand Section */}
-                    <View style={styles.brandSection}>
-                        <Image source={require('../assets/logo.png')} style={styles.logoImage} />
-                        <Text style={styles.brandTitle}>AttMate</Text>
-                        <Text style={styles.brandTagline}>Classroom management, redefined.</Text>
-                    </View>
 
-                    <View style={GLOBAL_STYLES.card}>
-                        <Text style={styles.loginTitle}>Welcome Back</Text>
-                        <Text style={styles.loginSubtitle}>Login to manage your class attendance.</Text>
+                <KeyboardAvoidingView
+                    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                    style={styles.flex}
+                >
+                    <View style={styles.content}>
+                        {/* Immersive Brand Section */}
+                        <View style={styles.brandSection}>
+                            <Image source={require('../assets/logo.png')} style={styles.logoImage} />
+                            <Text style={styles.brandTitle}>AttMate</Text>
+                            <Text style={styles.brandTagline}>Classroom management, redefined.</Text>
+                        </View>
 
-                        {/* Role Selector */}
-                        <View style={styles.roleContainer}>
+                        <View style={GLOBAL_STYLES.card}>
+                            <Text style={styles.loginTitle}>Welcome Back</Text>
+                            <Text style={styles.loginSubtitle}>Login to manage your class attendance.</Text>
+
+                            {/* Role Selector */}
+                            <View style={styles.roleContainer}>
+                                <TouchableOpacity
+                                    style={[styles.roleBtn, role === 'teacher' && styles.roleBtnActive]}
+                                    onPress={() => setRole('teacher')}
+                                >
+                                    <Text style={[styles.roleBtnText, role === 'teacher' && styles.roleBtnTextActive]}>Teacher</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity
+                                    style={[styles.roleBtn, role === 'admin' && styles.roleBtnActive]}
+                                    onPress={() => setRole('admin')}
+                                >
+                                    <Text style={[styles.roleBtnText, role === 'admin' && styles.roleBtnTextActive]}>Admin</Text>
+                                </TouchableOpacity>
+                            </View>
+
+                            <Text style={styles.label}>Email Address</Text>
+                            <TextInput
+                                style={GLOBAL_STYLES.input}
+                                placeholder="name@college.edu"
+                                value={email}
+                                onChangeText={setEmail}
+                                autoCapitalize="none"
+                                keyboardType="email-address"
+                            />
+
+                            <Text style={styles.label}>Password</Text>
+                            <TextInput
+                                style={GLOBAL_STYLES.input}
+                                placeholder="••••••••"
+                                value={password}
+                                onChangeText={setPassword}
+                                secureTextEntry
+                            />
+
                             <TouchableOpacity
-                                style={[styles.roleBtn, role === 'teacher' && styles.roleBtnActive]}
-                                onPress={() => setRole('teacher')}
+                                style={[GLOBAL_STYLES.btnPrimary, { marginTop: 10 }]}
+                                onPress={handleLogin}
+                                disabled={loading}
                             >
-                                <Text style={[styles.roleBtnText, role === 'teacher' && styles.roleBtnTextActive]}>Teacher</Text>
+                                {loading ? (
+                                    <ActivityIndicator color="#fff" />
+                                ) : (
+                                    <Text style={GLOBAL_STYLES.btnText}>Sign In</Text>
+                                )}
                             </TouchableOpacity>
-                            <TouchableOpacity
-                                style={[styles.roleBtn, role === 'admin' && styles.roleBtnActive]}
-                                onPress={() => setRole('admin')}
-                            >
-                                <Text style={[styles.roleBtnText, role === 'admin' && styles.roleBtnTextActive]}>Admin</Text>
+
+                            <TouchableOpacity style={styles.forgotBtn}>
+                                <Text style={styles.forgotText}>Forgot password?</Text>
                             </TouchableOpacity>
                         </View>
 
-                        <Text style={styles.label}>Email Address</Text>
-                        <TextInput
-                            style={GLOBAL_STYLES.input}
-                            placeholder="name@college.edu"
-                            value={email}
-                            onChangeText={setEmail}
-                            autoCapitalize="none"
-                            keyboardType="email-address"
-                        />
-
-                        <Text style={styles.label}>Password</Text>
-                        <TextInput
-                            style={GLOBAL_STYLES.input}
-                            placeholder="••••••••"
-                            value={password}
-                            onChangeText={setPassword}
-                            secureTextEntry
-                        />
-
-                        <TouchableOpacity
-                            style={[GLOBAL_STYLES.btnPrimary, { marginTop: 10 }]}
-                            onPress={handleLogin}
-                            disabled={loading}
-                        >
-                            {loading ? (
-                                <ActivityIndicator color="#fff" />
-                            ) : (
-                                <Text style={GLOBAL_STYLES.btnText}>Sign In</Text>
-                            )}
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.forgotBtn}>
-                            <Text style={styles.forgotText}>Forgot password?</Text>
-                        </TouchableOpacity>
+                        <View style={styles.footer}>
+                            <Text style={styles.footerText}>Don't have an account? </Text>
+                            <TouchableOpacity onPress={() => Alert.alert('Demo Mode', 'Contact admin to create an account.')}>
+                                <Text style={styles.linkText}>Get Started</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-
-                    <View style={styles.footer}>
-                        <Text style={styles.footerText}>Don't have an account? </Text>
-                        <TouchableOpacity onPress={() => Alert.alert('Demo Mode', 'Contact admin to create an account.')}>
-                            <Text style={styles.linkText}>Get Started</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </KeyboardAvoidingView>
+                </KeyboardAvoidingView>
+            </ScrollView>
         </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: COLORS.accentDeep },
+    container: {
+        flex: 1,
+        backgroundColor: COLORS.accentDeep,
+    },
+
+
+
+
     flex: { flex: 1 },
     content: { flex: 1, padding: 24, justifyContent: 'center' },
     brandSection: { alignItems: 'center', marginBottom: 40 },

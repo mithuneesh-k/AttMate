@@ -1,0 +1,4287 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "email": "admin@attmate.com",
+            "password": "123",
+            "role": "admin"
+        },
+        {
+            "id": 2,
+            "email": "beryl.en.bink@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 3,
+            "email": "devi@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 4,
+            "email": "c.infant.vinoth@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 5,
+            "email": "g.perumalsamy@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 6,
+            "email": "kannammal@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 7,
+            "email": "manokaran@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 8,
+            "email": "n.ganesh@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 9,
+            "email": "senthilkumar@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 10,
+            "email": "t.sathish.kumar@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 11,
+            "email": "y.baby.kalpana@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 12,
+            "email": "subramaniam@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 13,
+            "email": "sanjay.krishna@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 14,
+            "email": "g.anandababu@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 15,
+            "email": "m.karthik@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 16,
+            "email": "m.mohamed.rajik@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 17,
+            "email": "v.balaji@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 18,
+            "email": "deepthi@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 19,
+            "email": "dhivya@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 20,
+            "email": "manimegalai@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 21,
+            "email": "sharmila@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 22,
+            "email": "hemaprabha@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 23,
+            "email": "a.r.sweatha@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 24,
+            "email": "m.janani@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 25,
+            "email": "t.saraswathi@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 26,
+            "email": "haritha@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 27,
+            "email": "kalaiyarasi@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 28,
+            "email": "sasikala@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 29,
+            "email": "snega@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 30,
+            "email": "evangeline.aishwarya@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 31,
+            "email": "gayathri@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 32,
+            "email": "kousalya@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 33,
+            "email": "padmini@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 34,
+            "email": "rajalakshmi.nagarajan@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 35,
+            "email": "rathina.v@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 36,
+            "email": "s.nandhini@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 37,
+            "email": "sangeethav@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 38,
+            "email": "sri.devi@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 39,
+            "email": "g.nandhini.devi@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        },
+        {
+            "id": 40,
+            "email": "jenifer@attmate.com",
+            "password": "123",
+            "role": "teacher"
+        }
+    ],
+    "faculty": [
+        {
+            "id": 1,
+            "user_id": 2,
+            "name": "Dr. Beryl En Bink",
+            "department": "CSE"
+        },
+        {
+            "id": 2,
+            "user_id": 3,
+            "name": "Dr. Devi",
+            "department": "CSE"
+        },
+        {
+            "id": 3,
+            "user_id": 4,
+            "name": "Dr.C.Infant Vinoth",
+            "department": "CSE"
+        },
+        {
+            "id": 4,
+            "user_id": 5,
+            "name": "Dr.G.Perumalsamy",
+            "department": "CSE"
+        },
+        {
+            "id": 5,
+            "user_id": 6,
+            "name": "Dr.Kannammal",
+            "department": "CSE"
+        },
+        {
+            "id": 6,
+            "user_id": 7,
+            "name": "Dr.Manokaran",
+            "department": "CSE"
+        },
+        {
+            "id": 7,
+            "user_id": 8,
+            "name": "Dr.N.Ganesh",
+            "department": "CSE"
+        },
+        {
+            "id": 8,
+            "user_id": 9,
+            "name": "Dr.Senthilkumar",
+            "department": "CSE"
+        },
+        {
+            "id": 9,
+            "user_id": 10,
+            "name": "Dr.T.Sathish Kumar",
+            "department": "CSE"
+        },
+        {
+            "id": 10,
+            "user_id": 11,
+            "name": "Dr.Y Baby Kalpana",
+            "department": "CSE"
+        },
+        {
+            "id": 11,
+            "user_id": 12,
+            "name": "Mr Subramaniam",
+            "department": "CSE"
+        },
+        {
+            "id": 12,
+            "user_id": 13,
+            "name": "Mr. Sanjay Krishna",
+            "department": "CSE"
+        },
+        {
+            "id": 13,
+            "user_id": 14,
+            "name": "Mr.G.Anandababu",
+            "department": "CSE"
+        },
+        {
+            "id": 14,
+            "user_id": 15,
+            "name": "Mr.M.Karthik",
+            "department": "CSE"
+        },
+        {
+            "id": 15,
+            "user_id": 16,
+            "name": "Mr.M.Mohamed Rajik",
+            "department": "CSE"
+        },
+        {
+            "id": 16,
+            "user_id": 17,
+            "name": "Mr.V.Balaji",
+            "department": "CSE"
+        },
+        {
+            "id": 17,
+            "user_id": 18,
+            "name": "Mrs Deepthi",
+            "department": "CSE"
+        },
+        {
+            "id": 18,
+            "user_id": 19,
+            "name": "Mrs Dhivya",
+            "department": "CSE"
+        },
+        {
+            "id": 19,
+            "user_id": 20,
+            "name": "Mrs Manimegalai",
+            "department": "CSE"
+        },
+        {
+            "id": 20,
+            "user_id": 21,
+            "name": "Mrs Sharmila",
+            "department": "CSE"
+        },
+        {
+            "id": 21,
+            "user_id": 22,
+            "name": "Mrs. Hemaprabha",
+            "department": "CSE"
+        },
+        {
+            "id": 22,
+            "user_id": 23,
+            "name": "Mrs.A.R.Sweatha",
+            "department": "CSE"
+        },
+        {
+            "id": 23,
+            "user_id": 24,
+            "name": "Mrs.M.Janani",
+            "department": "CSE"
+        },
+        {
+            "id": 24,
+            "user_id": 25,
+            "name": "Mrs.T.Saraswathi",
+            "department": "CSE"
+        },
+        {
+            "id": 25,
+            "user_id": 26,
+            "name": "Ms Haritha",
+            "department": "CSE"
+        },
+        {
+            "id": 26,
+            "user_id": 27,
+            "name": "Ms Kalaiyarasi",
+            "department": "CSE"
+        },
+        {
+            "id": 27,
+            "user_id": 28,
+            "name": "Ms Sasikala",
+            "department": "CSE"
+        },
+        {
+            "id": 28,
+            "user_id": 29,
+            "name": "Ms Snega",
+            "department": "CSE"
+        },
+        {
+            "id": 29,
+            "user_id": 30,
+            "name": "Ms. Evangeline Aishwarya",
+            "department": "CSE"
+        },
+        {
+            "id": 30,
+            "user_id": 31,
+            "name": "Ms. Gayathri",
+            "department": "CSE"
+        },
+        {
+            "id": 31,
+            "user_id": 32,
+            "name": "Ms. Kousalya",
+            "department": "CSE"
+        },
+        {
+            "id": 32,
+            "user_id": 33,
+            "name": "Ms. Padmini",
+            "department": "CSE"
+        },
+        {
+            "id": 33,
+            "user_id": 34,
+            "name": "Ms. Rajalakshmi Nagarajan",
+            "department": "CSE"
+        },
+        {
+            "id": 34,
+            "user_id": 35,
+            "name": "Ms. Rathina V",
+            "department": "CSE"
+        },
+        {
+            "id": 35,
+            "user_id": 36,
+            "name": "Ms. S. Nandhini",
+            "department": "CSE"
+        },
+        {
+            "id": 36,
+            "user_id": 37,
+            "name": "Ms. SangeethaV",
+            "department": "CSE"
+        },
+        {
+            "id": 37,
+            "user_id": 38,
+            "name": "Ms. Sri devi",
+            "department": "CSE"
+        },
+        {
+            "id": 38,
+            "user_id": 39,
+            "name": "Ms.G.Nandhini devi",
+            "department": "CSE"
+        },
+        {
+            "id": 39,
+            "user_id": 40,
+            "name": "Ms.Jenifer",
+            "department": "CSE"
+        }
+    ],
+    "subjects": [
+        {
+            "id": 1,
+            "name": "Psychology",
+            "code": "P107"
+        },
+        {
+            "id": 2,
+            "name": "Tamils and Technology",
+            "code": "TAT526"
+        },
+        {
+            "id": 3,
+            "name": "Personality Development",
+            "code": "PD300"
+        },
+        {
+            "id": 4,
+            "name": "Engineering Exploration II(EEPL)",
+            "code": "EEI999"
+        },
+        {
+            "id": 5,
+            "name": "Design Thinking Engineering Laboratory",
+            "code": "DTEL141"
+        },
+        {
+            "id": 6,
+            "name": "Advanced JAVA Programming Lab",
+            "code": "AJPL335"
+        },
+        {
+            "id": 7,
+            "name": "English for Career Growth",
+            "code": "EFCG886"
+        },
+        {
+            "id": 8,
+            "name": "Discrete Mathematics And Graph Theory",
+            "code": "DMAGT499"
+        },
+        {
+            "id": 9,
+            "name": "Data Structures and Algorithms lab",
+            "code": "DSAAL492"
+        },
+        {
+            "id": 10,
+            "name": "Advanced JAVA Programming",
+            "code": "AJP884"
+        },
+        {
+            "id": 11,
+            "name": "Data Structures and Algorithms I",
+            "code": "DSAAI698"
+        },
+        {
+            "id": 12,
+            "name": "Web Programming Concepts",
+            "code": "WPC190"
+        },
+        {
+            "id": 13,
+            "name": "Web Programming laboratory",
+            "code": "WPL262"
+        }
+    ],
+    "classes": [
+        {
+            "id": 3,
+            "name": "25CSEC",
+            "advisor_id": 12
+        },
+        {
+            "id": 4,
+            "name": "25CSED",
+            "advisor_id": 29
+        },
+        {
+            "id": 2,
+            "name": "25CSEB",
+            "advisor_id": 30
+        },
+        {
+            "id": 5,
+            "name": "25CSEE",
+            "advisor_id": 35
+        },
+        {
+            "id": 1,
+            "name": "25CSEA",
+            "advisor_id": 39
+        }
+    ],
+    "students": [
+        {
+            "id": 1,
+            "roll_number": "25CS001",
+            "reg_number": "714025104001",
+            "name": "AADHIL YUNIS U",
+            "class_id": 1
+        },
+        {
+            "id": 2,
+            "roll_number": "25CS002",
+            "reg_number": "714025104002",
+            "name": "AARATHANA R",
+            "class_id": 1
+        },
+        {
+            "id": 3,
+            "roll_number": "25CS003",
+            "reg_number": "714025104003",
+            "name": "AASIFKHAN S",
+            "class_id": 1
+        },
+        {
+            "id": 4,
+            "roll_number": "25CS004",
+            "reg_number": "714025104004",
+            "name": "ABHINAYA I",
+            "class_id": 1
+        },
+        {
+            "id": 5,
+            "roll_number": "25CS005",
+            "reg_number": "714025104005",
+            "name": "ABINANDHANA T",
+            "class_id": 1
+        },
+        {
+            "id": 6,
+            "roll_number": "25CS006",
+            "reg_number": "714025104006",
+            "name": "ABINAYA T",
+            "class_id": 1
+        },
+        {
+            "id": 7,
+            "roll_number": "25CS007",
+            "reg_number": "714025104007",
+            "name": "ABISHECK M",
+            "class_id": 1
+        },
+        {
+            "id": 8,
+            "roll_number": "25CS008",
+            "reg_number": "714025104008",
+            "name": "ADITHI MD",
+            "class_id": 1
+        },
+        {
+            "id": 9,
+            "roll_number": "25CS009",
+            "reg_number": "714025104009",
+            "name": "AFNASAFRIN N",
+            "class_id": 1
+        },
+        {
+            "id": 10,
+            "roll_number": "25CS010",
+            "reg_number": "714025104010",
+            "name": "AJAYRATHNAM R",
+            "class_id": 1
+        },
+        {
+            "id": 11,
+            "roll_number": "25CS011",
+            "reg_number": "714025104011",
+            "name": "AKHILESHKAR TP",
+            "class_id": 1
+        },
+        {
+            "id": 12,
+            "roll_number": "25CS012",
+            "reg_number": "714025104012",
+            "name": "AKILESH V",
+            "class_id": 1
+        },
+        {
+            "id": 13,
+            "roll_number": "25CS013",
+            "reg_number": "714025104013",
+            "name": "AKILESHPRIYAN D",
+            "class_id": 1
+        },
+        {
+            "id": 14,
+            "roll_number": "25CS014",
+            "reg_number": "714025104014",
+            "name": "AKSHATHA SP",
+            "class_id": 1
+        },
+        {
+            "id": 15,
+            "roll_number": "25CS015",
+            "reg_number": "714025104015",
+            "name": "AKSHAYA K",
+            "class_id": 1
+        },
+        {
+            "id": 16,
+            "roll_number": "25CS016",
+            "reg_number": "714025104016",
+            "name": "AKSHAYA S",
+            "class_id": 1
+        },
+        {
+            "id": 17,
+            "roll_number": "25CS017",
+            "reg_number": "714025104017",
+            "name": "ALEN KR",
+            "class_id": 1
+        },
+        {
+            "id": 18,
+            "roll_number": "25CS018",
+            "reg_number": "714025104018",
+            "name": "ALSWMITH S",
+            "class_id": 1
+        },
+        {
+            "id": 19,
+            "roll_number": "25CS019",
+            "reg_number": "714025104019",
+            "name": "ANU S",
+            "class_id": 1
+        },
+        {
+            "id": 20,
+            "roll_number": "25CS020",
+            "reg_number": "714025104020",
+            "name": "ANUSHREE M",
+            "class_id": 1
+        },
+        {
+            "id": 21,
+            "roll_number": "25CS021",
+            "reg_number": "714025104021",
+            "name": "ARAVIND S",
+            "class_id": 1
+        },
+        {
+            "id": 22,
+            "roll_number": "25CS022",
+            "reg_number": "714025104022",
+            "name": "ARCHANA R",
+            "class_id": 1
+        },
+        {
+            "id": 23,
+            "roll_number": "25CS023",
+            "reg_number": "714025104023",
+            "name": "ARJUN CHOKKALINGAM K",
+            "class_id": 1
+        },
+        {
+            "id": 24,
+            "roll_number": "25CS024",
+            "reg_number": "714025104024",
+            "name": "ARUN KUMAR S",
+            "class_id": 1
+        },
+        {
+            "id": 25,
+            "roll_number": "25CS025",
+            "reg_number": "714025104025",
+            "name": "ARUNKUMAR C",
+            "class_id": 1
+        },
+        {
+            "id": 26,
+            "roll_number": "25CS026",
+            "reg_number": "714025104026",
+            "name": "ASHLIN A",
+            "class_id": 1
+        },
+        {
+            "id": 27,
+            "roll_number": "25CS027",
+            "reg_number": "714025104027",
+            "name": "ASHWIN KIRBAA B",
+            "class_id": 1
+        },
+        {
+            "id": 28,
+            "roll_number": "25CS028",
+            "reg_number": "714025104028",
+            "name": "ASIMA A",
+            "class_id": 1
+        },
+        {
+            "id": 29,
+            "roll_number": "25CS029",
+            "reg_number": "714025104029",
+            "name": "ASWIN R",
+            "class_id": 1
+        },
+        {
+            "id": 30,
+            "roll_number": "25CS030",
+            "reg_number": "714025104030",
+            "name": "ASWINRAJ K",
+            "class_id": 1
+        },
+        {
+            "id": 31,
+            "roll_number": "25CS031",
+            "reg_number": "714025104031",
+            "name": "ATCHAYA B",
+            "class_id": 1
+        },
+        {
+            "id": 32,
+            "roll_number": "25CS032",
+            "reg_number": "714025104032",
+            "name": "ATCHAYA K",
+            "class_id": 1
+        },
+        {
+            "id": 33,
+            "roll_number": "25CS033",
+            "reg_number": "714025104033",
+            "name": "Ammaiyappan C",
+            "class_id": 1
+        },
+        {
+            "id": 34,
+            "roll_number": "25CS034",
+            "reg_number": "714025104034",
+            "name": "Avanthikaa K V",
+            "class_id": 1
+        },
+        {
+            "id": 35,
+            "roll_number": "25CS035",
+            "reg_number": "714025104035",
+            "name": "BALAMURUGAN M",
+            "class_id": 1
+        },
+        {
+            "id": 36,
+            "roll_number": "25CS036",
+            "reg_number": "714025104036",
+            "name": "BHARANI A",
+            "class_id": 1
+        },
+        {
+            "id": 37,
+            "roll_number": "25CS037",
+            "reg_number": "714025104037",
+            "name": "BHAVANI N",
+            "class_id": 1
+        },
+        {
+            "id": 38,
+            "roll_number": "25CS038",
+            "reg_number": "714025104038",
+            "name": "BHAVATHARANI S",
+            "class_id": 1
+        },
+        {
+            "id": 39,
+            "roll_number": "25CS039",
+            "reg_number": "714025104039",
+            "name": "BRINDHA D",
+            "class_id": 1
+        },
+        {
+            "id": 40,
+            "roll_number": "25CS040",
+            "reg_number": "714025104040",
+            "name": "BRINDHA R",
+            "class_id": 1
+        },
+        {
+            "id": 41,
+            "roll_number": "25CS041",
+            "reg_number": "714025104041",
+            "name": "CHAMELI NAYAHA J",
+            "class_id": 1
+        },
+        {
+            "id": 42,
+            "roll_number": "25CS042",
+            "reg_number": "714025104042",
+            "name": "DANIEL ALEX A",
+            "class_id": 1
+        },
+        {
+            "id": 43,
+            "roll_number": "25CS043",
+            "reg_number": "714025104043",
+            "name": "DANIEL WILLIAM BG",
+            "class_id": 1
+        },
+        {
+            "id": 44,
+            "roll_number": "25CS044",
+            "reg_number": "714025104044",
+            "name": "DARIKA SHRI V",
+            "class_id": 1
+        },
+        {
+            "id": 45,
+            "roll_number": "25CS045",
+            "reg_number": "714025104045",
+            "name": "DARSHAN JB",
+            "class_id": 1
+        },
+        {
+            "id": 46,
+            "roll_number": "25CS046",
+            "reg_number": "714025104046",
+            "name": "DEEKSHA KRITI K",
+            "class_id": 1
+        },
+        {
+            "id": 47,
+            "roll_number": "25CS047",
+            "reg_number": "714025104047",
+            "name": "DEEPADHARANI S",
+            "class_id": 1
+        },
+        {
+            "id": 48,
+            "roll_number": "25CS048",
+            "reg_number": "714025104048",
+            "name": "DEEPAHARINI V",
+            "class_id": 1
+        },
+        {
+            "id": 49,
+            "roll_number": "25CS049",
+            "reg_number": "714025104049",
+            "name": "DEVAN S",
+            "class_id": 1
+        },
+        {
+            "id": 50,
+            "roll_number": "25CS050",
+            "reg_number": "714025104050",
+            "name": "DEVISRI R",
+            "class_id": 1
+        },
+        {
+            "id": 51,
+            "roll_number": "25CS051",
+            "reg_number": "714025104051",
+            "name": "DHANUSHKUMAR R",
+            "class_id": 1
+        },
+        {
+            "id": 52,
+            "roll_number": "25CS052",
+            "reg_number": "714025104052",
+            "name": "DHANUSRI E",
+            "class_id": 1
+        },
+        {
+            "id": 53,
+            "roll_number": "25CS053",
+            "reg_number": "714025104053",
+            "name": "DHANYA SHREE K",
+            "class_id": 1
+        },
+        {
+            "id": 54,
+            "roll_number": "25CS054",
+            "reg_number": "714025104054",
+            "name": "DHARANIKA S",
+            "class_id": 1
+        },
+        {
+            "id": 55,
+            "roll_number": "25CS055",
+            "reg_number": "714025104055",
+            "name": "DHARANISH KUMAR M",
+            "class_id": 1
+        },
+        {
+            "id": 56,
+            "roll_number": "25CS056",
+            "reg_number": "714025104056",
+            "name": "DHARANITHARAN N",
+            "class_id": 1
+        },
+        {
+            "id": 57,
+            "roll_number": "25CS057",
+            "reg_number": "714025104057",
+            "name": "DHARSHAN A",
+            "class_id": 1
+        },
+        {
+            "id": 58,
+            "roll_number": "25CS058",
+            "reg_number": "714025104058",
+            "name": "DHARSHAN B",
+            "class_id": 1
+        },
+        {
+            "id": 59,
+            "roll_number": "25CS059",
+            "reg_number": "714025104059",
+            "name": "DHARSHAN K",
+            "class_id": 1
+        },
+        {
+            "id": 60,
+            "roll_number": "25CS060",
+            "reg_number": "714025104060",
+            "name": "DHARSHINI GG",
+            "class_id": 1
+        },
+        {
+            "id": 61,
+            "roll_number": "25CS061",
+            "reg_number": "714025104061",
+            "name": "DHARSHINI MP",
+            "class_id": 1
+        },
+        {
+            "id": 62,
+            "roll_number": "25CS062",
+            "reg_number": "714025104062",
+            "name": "DHARSHINI S",
+            "class_id": 1
+        },
+        {
+            "id": 63,
+            "roll_number": "25CS063",
+            "reg_number": "714025104063",
+            "name": "DHARSHINI SARAVANAKUMAR",
+            "class_id": 1
+        },
+        {
+            "id": 64,
+            "roll_number": "25CS064",
+            "reg_number": "714025104064",
+            "name": "DHARUN M",
+            "class_id": 1
+        },
+        {
+            "id": 65,
+            "roll_number": "25CS065",
+            "reg_number": "714025104065",
+            "name": "DHARUN VENGADESH N",
+            "class_id": 2
+        },
+        {
+            "id": 66,
+            "roll_number": "25CS066",
+            "reg_number": "714025104066",
+            "name": "DHIYANESHWAR M",
+            "class_id": 2
+        },
+        {
+            "id": 67,
+            "roll_number": "25CS067",
+            "reg_number": "714025104067",
+            "name": "DIVYA SRI M",
+            "class_id": 2
+        },
+        {
+            "id": 68,
+            "roll_number": "25CS068",
+            "reg_number": "714025104068",
+            "name": "ELAMPARITHI P",
+            "class_id": 2
+        },
+        {
+            "id": 69,
+            "roll_number": "25CS069",
+            "reg_number": "714025104069",
+            "name": "GANASRI C",
+            "class_id": 2
+        },
+        {
+            "id": 70,
+            "roll_number": "25CS070",
+            "reg_number": "714025104070",
+            "name": "GIRIVAASAN N S",
+            "class_id": 2
+        },
+        {
+            "id": 71,
+            "roll_number": "25CS071",
+            "reg_number": "714025104071",
+            "name": "GOBIKA D",
+            "class_id": 2
+        },
+        {
+            "id": 72,
+            "roll_number": "25CS072",
+            "reg_number": "714025104072",
+            "name": "GOKUL I",
+            "class_id": 2
+        },
+        {
+            "id": 73,
+            "roll_number": "25CS073",
+            "reg_number": "714025104073",
+            "name": "GOVARTHANAN R",
+            "class_id": 2
+        },
+        {
+            "id": 74,
+            "roll_number": "25CS074",
+            "reg_number": "714025104074",
+            "name": "GOWTHAM L.",
+            "class_id": 2
+        },
+        {
+            "id": 75,
+            "roll_number": "25CS075",
+            "reg_number": "714025104075",
+            "name": "GOWTHAMAN S",
+            "class_id": 2
+        },
+        {
+            "id": 76,
+            "roll_number": "25CS076",
+            "reg_number": "714025104076",
+            "name": "GUNA R",
+            "class_id": 2
+        },
+        {
+            "id": 77,
+            "roll_number": "25CS077",
+            "reg_number": "714025104077",
+            "name": "GUNA SOUNDARYA M",
+            "class_id": 2
+        },
+        {
+            "id": 78,
+            "roll_number": "25CS078",
+            "reg_number": "714025104078",
+            "name": "HARIDHARSHAN J",
+            "class_id": 2
+        },
+        {
+            "id": 79,
+            "roll_number": "25CS079",
+            "reg_number": "714025104079",
+            "name": "HARIHARASUDHAN V S",
+            "class_id": 2
+        },
+        {
+            "id": 80,
+            "roll_number": "25CS080",
+            "reg_number": "714025104080",
+            "name": "HARINI B",
+            "class_id": 2
+        },
+        {
+            "id": 81,
+            "roll_number": "25CS081",
+            "reg_number": "714025104081",
+            "name": "HARINI R",
+            "class_id": 2
+        },
+        {
+            "id": 82,
+            "roll_number": "25CS082",
+            "reg_number": "714025104082",
+            "name": "HARIS ROSHAN M",
+            "class_id": 2
+        },
+        {
+            "id": 83,
+            "roll_number": "25CS083",
+            "reg_number": "714025104083",
+            "name": "HARISH RAJA K",
+            "class_id": 2
+        },
+        {
+            "id": 84,
+            "roll_number": "25CS084",
+            "reg_number": "714025104084",
+            "name": "HARITHAA G",
+            "class_id": 2
+        },
+        {
+            "id": 85,
+            "roll_number": "25CS085",
+            "reg_number": "714025104085",
+            "name": "HARITHARAN G",
+            "class_id": 2
+        },
+        {
+            "id": 86,
+            "roll_number": "25CS086",
+            "reg_number": "714025104086",
+            "name": "HARRIS RONI D",
+            "class_id": 2
+        },
+        {
+            "id": 87,
+            "roll_number": "25CS087",
+            "reg_number": "714025104087",
+            "name": "HARSHINE R",
+            "class_id": 2
+        },
+        {
+            "id": 88,
+            "roll_number": "25CS088",
+            "reg_number": "714025104088",
+            "name": "HARSHINI K",
+            "class_id": 2
+        },
+        {
+            "id": 89,
+            "roll_number": "25CS089",
+            "reg_number": "714025104089",
+            "name": "HARSHITHA B M",
+            "class_id": 2
+        },
+        {
+            "id": 90,
+            "roll_number": "25CS090",
+            "reg_number": "714025104090",
+            "name": "HEMALATHA M",
+            "class_id": 2
+        },
+        {
+            "id": 91,
+            "roll_number": "25CS091",
+            "reg_number": "714025104091",
+            "name": "HENRY JOSHUA J",
+            "class_id": 2
+        },
+        {
+            "id": 92,
+            "roll_number": "25CS092",
+            "reg_number": "714025104092",
+            "name": "INDHU KAVYA P",
+            "class_id": 2
+        },
+        {
+            "id": 93,
+            "roll_number": "25CS093",
+            "reg_number": "714025104093",
+            "name": "INDHU M",
+            "class_id": 2
+        },
+        {
+            "id": 94,
+            "roll_number": "25CS094",
+            "reg_number": "714025104094",
+            "name": "ISAAC DANIEL S",
+            "class_id": 2
+        },
+        {
+            "id": 95,
+            "roll_number": "25CS095",
+            "reg_number": "714025104095",
+            "name": "ISHWARYA A K",
+            "class_id": 2
+        },
+        {
+            "id": 96,
+            "roll_number": "25CS096",
+            "reg_number": "714025104096",
+            "name": "JAI VIKASH A R",
+            "class_id": 2
+        },
+        {
+            "id": 97,
+            "roll_number": "25CS097",
+            "reg_number": "714025104097",
+            "name": "JAMES VASANTHAN E",
+            "class_id": 2
+        },
+        {
+            "id": 98,
+            "roll_number": "25CS098",
+            "reg_number": "714025104098",
+            "name": "JANANI P",
+            "class_id": 2
+        },
+        {
+            "id": 99,
+            "roll_number": "25CS099",
+            "reg_number": "714025104099",
+            "name": "JAYAPRIYA V",
+            "class_id": 2
+        },
+        {
+            "id": 100,
+            "roll_number": "25CS100",
+            "reg_number": "714025104100",
+            "name": "JAYASHREE K J",
+            "class_id": 2
+        },
+        {
+            "id": 101,
+            "roll_number": "25CS101",
+            "reg_number": "714025104101",
+            "name": "JAYASIMHA S",
+            "class_id": 2
+        },
+        {
+            "id": 102,
+            "roll_number": "25CS102",
+            "reg_number": "714025104102",
+            "name": "JAYASREE M",
+            "class_id": 2
+        },
+        {
+            "id": 103,
+            "roll_number": "25CS103",
+            "reg_number": "714025104103",
+            "name": "JEEVA A",
+            "class_id": 2
+        },
+        {
+            "id": 104,
+            "roll_number": "25CS104",
+            "reg_number": "714025104104",
+            "name": "JEEVANANTHAM K",
+            "class_id": 2
+        },
+        {
+            "id": 105,
+            "roll_number": "25CS105",
+            "reg_number": "714025104105",
+            "name": "JEEVINTH M",
+            "class_id": 2
+        },
+        {
+            "id": 106,
+            "roll_number": "25CS106",
+            "reg_number": "714025104106",
+            "name": "JEYASREE B",
+            "class_id": 2
+        },
+        {
+            "id": 107,
+            "roll_number": "25CS107",
+            "reg_number": "714025104107",
+            "name": "KABILASH R",
+            "class_id": 2
+        },
+        {
+            "id": 108,
+            "roll_number": "25CS108",
+            "reg_number": "714025104108",
+            "name": "KALAI SANGAMITHIRAN S K",
+            "class_id": 2
+        },
+        {
+            "id": 109,
+            "roll_number": "25CS109",
+            "reg_number": "714025104109",
+            "name": "KANISHA R S",
+            "class_id": 2
+        },
+        {
+            "id": 110,
+            "roll_number": "25CS110",
+            "reg_number": "714025104110",
+            "name": "KANISHK K S",
+            "class_id": 2
+        },
+        {
+            "id": 111,
+            "roll_number": "25CS111",
+            "reg_number": "714025104111",
+            "name": "KANISHKA M R",
+            "class_id": 2
+        },
+        {
+            "id": 112,
+            "roll_number": "25CS112",
+            "reg_number": "714025104112",
+            "name": "KANISHKA T",
+            "class_id": 2
+        },
+        {
+            "id": 113,
+            "roll_number": "25CS113",
+            "reg_number": "714025104113",
+            "name": "KARISHNI B",
+            "class_id": 2
+        },
+        {
+            "id": 114,
+            "roll_number": "25CS114",
+            "reg_number": "714025104114",
+            "name": "KAVI BARATHI R",
+            "class_id": 2
+        },
+        {
+            "id": 115,
+            "roll_number": "25CS115",
+            "reg_number": "714025104115",
+            "name": "KAVIN K R",
+            "class_id": 2
+        },
+        {
+            "id": 116,
+            "roll_number": "25CS116",
+            "reg_number": "714025104116",
+            "name": "KAVISHNA S",
+            "class_id": 2
+        },
+        {
+            "id": 117,
+            "roll_number": "25CS117",
+            "reg_number": "714025104117",
+            "name": "KAVIYA M",
+            "class_id": 2
+        },
+        {
+            "id": 118,
+            "roll_number": "25CS118",
+            "reg_number": "714025104118",
+            "name": "KEERTHANA R",
+            "class_id": 2
+        },
+        {
+            "id": 119,
+            "roll_number": "25CS119",
+            "reg_number": "714025104119",
+            "name": "KIRUNITH S",
+            "class_id": 2
+        },
+        {
+            "id": 120,
+            "roll_number": "25CS120",
+            "reg_number": "714025104120",
+            "name": "KISHORE S",
+            "class_id": 2
+        },
+        {
+            "id": 121,
+            "roll_number": "25CS121",
+            "reg_number": "714025104121",
+            "name": "KISHORE S P",
+            "class_id": 2
+        },
+        {
+            "id": 122,
+            "roll_number": "25CS122",
+            "reg_number": "714025104122",
+            "name": "KRITHIN T",
+            "class_id": 2
+        },
+        {
+            "id": 123,
+            "roll_number": "25CS123",
+            "reg_number": "714025104123",
+            "name": "LAKSHITHA S",
+            "class_id": 2
+        },
+        {
+            "id": 124,
+            "roll_number": "25CS124",
+            "reg_number": "714025104124",
+            "name": "LAKSHNAS SREE M",
+            "class_id": 2
+        },
+        {
+            "id": 125,
+            "roll_number": "25CS125",
+            "reg_number": "714025104125",
+            "name": "LALITH RAM K",
+            "class_id": 2
+        },
+        {
+            "id": 126,
+            "roll_number": "25CS126",
+            "reg_number": "714025104126",
+            "name": "LAVANYA R",
+            "class_id": 3
+        },
+        {
+            "id": 127,
+            "roll_number": "25CS127",
+            "reg_number": "714025104127",
+            "name": "LITHIKA DB",
+            "class_id": 3
+        },
+        {
+            "id": 128,
+            "roll_number": "25CS128",
+            "reg_number": "714025104128",
+            "name": "LOGESH R",
+            "class_id": 3
+        },
+        {
+            "id": 129,
+            "roll_number": "25CS129",
+            "reg_number": "714025104129",
+            "name": "MAHALAKSHMI B",
+            "class_id": 3
+        },
+        {
+            "id": 130,
+            "roll_number": "25CS130",
+            "reg_number": "714025104130",
+            "name": "MAHASAKTHI S",
+            "class_id": 3
+        },
+        {
+            "id": 131,
+            "roll_number": "25CS131",
+            "reg_number": "714025104131",
+            "name": "MALINI A",
+            "class_id": 3
+        },
+        {
+            "id": 132,
+            "roll_number": "25CS132",
+            "reg_number": "714025104132",
+            "name": "MANIKANDAN N",
+            "class_id": 3
+        },
+        {
+            "id": 133,
+            "roll_number": "25CS133",
+            "reg_number": "714025104133",
+            "name": "MANISH BHARATHI G",
+            "class_id": 3
+        },
+        {
+            "id": 134,
+            "roll_number": "25CS134",
+            "reg_number": "714025104134",
+            "name": "MANISHA S",
+            "class_id": 3
+        },
+        {
+            "id": 135,
+            "roll_number": "25CS135",
+            "reg_number": "714025104135",
+            "name": "MANOJ KUMAR S",
+            "class_id": 3
+        },
+        {
+            "id": 136,
+            "roll_number": "25CS136",
+            "reg_number": "714025104136",
+            "name": "MATHAN KUMAR K",
+            "class_id": 3
+        },
+        {
+            "id": 137,
+            "roll_number": "25CS137",
+            "reg_number": "714025104137",
+            "name": "MATHESH KS",
+            "class_id": 3
+        },
+        {
+            "id": 138,
+            "roll_number": "25CS138",
+            "reg_number": "714025104138",
+            "name": "MATHESH UB",
+            "class_id": 3
+        },
+        {
+            "id": 139,
+            "roll_number": "25CS139",
+            "reg_number": "714025104139",
+            "name": "MAVYASHRI M",
+            "class_id": 3
+        },
+        {
+            "id": 140,
+            "roll_number": "25CS140",
+            "reg_number": "714025104140",
+            "name": "MEENAKSHI C",
+            "class_id": 3
+        },
+        {
+            "id": 141,
+            "roll_number": "25CS141",
+            "reg_number": "714025104141",
+            "name": "MEHAA S",
+            "class_id": 3
+        },
+        {
+            "id": 142,
+            "roll_number": "25CS142",
+            "reg_number": "714025104142",
+            "name": "MEKAJAYA S",
+            "class_id": 3
+        },
+        {
+            "id": 143,
+            "roll_number": "25CS143",
+            "reg_number": "714025104143",
+            "name": "MITHRA S",
+            "class_id": 3
+        },
+        {
+            "id": 144,
+            "roll_number": "25CS144",
+            "reg_number": "714025104144",
+            "name": "MITHUNEESH K",
+            "class_id": 3
+        },
+        {
+            "id": 145,
+            "roll_number": "25CS145",
+            "reg_number": "714025104145",
+            "name": "MOHAMED FAIZAL S",
+            "class_id": 3
+        },
+        {
+            "id": 146,
+            "roll_number": "25CS146",
+            "reg_number": "714025104146",
+            "name": "MOHAMED IRFAN N",
+            "class_id": 3
+        },
+        {
+            "id": 147,
+            "roll_number": "25CS147",
+            "reg_number": "714025104147",
+            "name": "MOHANA KRISHNAN S",
+            "class_id": 3
+        },
+        {
+            "id": 148,
+            "roll_number": "25CS148",
+            "reg_number": "714025104148",
+            "name": "MONISHA M",
+            "class_id": 3
+        },
+        {
+            "id": 149,
+            "roll_number": "25CS149",
+            "reg_number": "714025104149",
+            "name": "MOUNIKA SHREE M",
+            "class_id": 3
+        },
+        {
+            "id": 150,
+            "roll_number": "25CS150",
+            "reg_number": "714025104150",
+            "name": "MUGESH KANNA S",
+            "class_id": 3
+        },
+        {
+            "id": 151,
+            "roll_number": "25CS151",
+            "reg_number": "714025104151",
+            "name": "MUKESH NS",
+            "class_id": 3
+        },
+        {
+            "id": 152,
+            "roll_number": "25CS152",
+            "reg_number": "714025104152",
+            "name": "MURUGAVEL A",
+            "class_id": 3
+        },
+        {
+            "id": 153,
+            "roll_number": "25CS153",
+            "reg_number": "714025104153",
+            "name": "NAKSHATRA SV",
+            "class_id": 3
+        },
+        {
+            "id": 154,
+            "roll_number": "25CS154",
+            "reg_number": "714025104154",
+            "name": "NANDHIKA VANJINAYAKI B",
+            "class_id": 3
+        },
+        {
+            "id": 155,
+            "roll_number": "25CS155",
+            "reg_number": "714025104155",
+            "name": "NAREN A",
+            "class_id": 3
+        },
+        {
+            "id": 156,
+            "roll_number": "25CS156",
+            "reg_number": "714025104156",
+            "name": "NAREN B",
+            "class_id": 3
+        },
+        {
+            "id": 157,
+            "roll_number": "25CS157",
+            "reg_number": "714025104157",
+            "name": "NARMATHA R",
+            "class_id": 3
+        },
+        {
+            "id": 158,
+            "roll_number": "25CS158",
+            "reg_number": "714025104158",
+            "name": "NAVEEN B",
+            "class_id": 3
+        },
+        {
+            "id": 159,
+            "roll_number": "25CS159",
+            "reg_number": "714025104159",
+            "name": "NAVEEN K",
+            "class_id": 3
+        },
+        {
+            "id": 160,
+            "roll_number": "25CS160",
+            "reg_number": "714025104160",
+            "name": "NAVEEN KUMAR SK",
+            "class_id": 3
+        },
+        {
+            "id": 161,
+            "roll_number": "25CS161",
+            "reg_number": "714025104161",
+            "name": "NAVEEN R",
+            "class_id": 3
+        },
+        {
+            "id": 162,
+            "roll_number": "25CS162",
+            "reg_number": "714025104162",
+            "name": "NAVIN R",
+            "class_id": 3
+        },
+        {
+            "id": 163,
+            "roll_number": "25CS163",
+            "reg_number": "714025104163",
+            "name": "NETHRA P",
+            "class_id": 3
+        },
+        {
+            "id": 164,
+            "roll_number": "25CS164",
+            "reg_number": "714025104164",
+            "name": "NETHRA SP",
+            "class_id": 3
+        },
+        {
+            "id": 165,
+            "roll_number": "25CS165",
+            "reg_number": "714025104165",
+            "name": "NETHRA SS",
+            "class_id": 3
+        },
+        {
+            "id": 166,
+            "roll_number": "25CS166",
+            "reg_number": "714025104166",
+            "name": "NETRA V",
+            "class_id": 3
+        },
+        {
+            "id": 167,
+            "roll_number": "25CS167",
+            "reg_number": "714025104167",
+            "name": "NIKIL KARTHIK SA",
+            "class_id": 3
+        },
+        {
+            "id": 168,
+            "roll_number": "25CS168",
+            "reg_number": "714025104168",
+            "name": "NIRANJAN B",
+            "class_id": 3
+        },
+        {
+            "id": 169,
+            "roll_number": "25CS169",
+            "reg_number": "714025104169",
+            "name": "NISHAL S",
+            "class_id": 3
+        },
+        {
+            "id": 170,
+            "roll_number": "25CS170",
+            "reg_number": "714025104170",
+            "name": "NISHANT JR",
+            "class_id": 3
+        },
+        {
+            "id": 171,
+            "roll_number": "25CS171",
+            "reg_number": "714025104171",
+            "name": "NISHANT JS",
+            "class_id": 3
+        },
+        {
+            "id": 172,
+            "roll_number": "25CS172",
+            "reg_number": "714025104172",
+            "name": "NISHANTH C",
+            "class_id": 3
+        },
+        {
+            "id": 173,
+            "roll_number": "25CS173",
+            "reg_number": "714025104173",
+            "name": "NISHANTH KR",
+            "class_id": 3
+        },
+        {
+            "id": 174,
+            "roll_number": "25CS174",
+            "reg_number": "714025104174",
+            "name": "NISHANTH RK",
+            "class_id": 3
+        },
+        {
+            "id": 175,
+            "roll_number": "25CS175",
+            "reg_number": "714025104175",
+            "name": "NISHANTH S",
+            "class_id": 3
+        },
+        {
+            "id": 176,
+            "roll_number": "25CS176",
+            "reg_number": "714025104176",
+            "name": "NITHEESH M",
+            "class_id": 3
+        },
+        {
+            "id": 177,
+            "roll_number": "25CS177",
+            "reg_number": "714025104177",
+            "name": "NITHEESWAR S",
+            "class_id": 3
+        },
+        {
+            "id": 178,
+            "roll_number": "25CS178",
+            "reg_number": "714025104178",
+            "name": "NITHICK SJ",
+            "class_id": 3
+        },
+        {
+            "id": 179,
+            "roll_number": "25CS179",
+            "reg_number": "714025104179",
+            "name": "NITHIN AKASH PS",
+            "class_id": 3
+        },
+        {
+            "id": 180,
+            "roll_number": "25CS180",
+            "reg_number": "714025104180",
+            "name": "NITHIN SB",
+            "class_id": 3
+        },
+        {
+            "id": 181,
+            "roll_number": "25CS181",
+            "reg_number": "714025104181",
+            "name": "NITHISH NARAYANAN C",
+            "class_id": 3
+        },
+        {
+            "id": 182,
+            "roll_number": "25CS182",
+            "reg_number": "714025104182",
+            "name": "NITHIYA SRI K",
+            "class_id": 3
+        },
+        {
+            "id": 183,
+            "roll_number": "25CS183",
+            "reg_number": "714025104183",
+            "name": "NITISH RG",
+            "class_id": 3
+        },
+        {
+            "id": 184,
+            "roll_number": "25CS184",
+            "reg_number": "714025104184",
+            "name": "NIVEDITA R",
+            "class_id": 3
+        },
+        {
+            "id": 185,
+            "roll_number": "25CS185",
+            "reg_number": "714025104185",
+            "name": "NIVETHA KT",
+            "class_id": 3
+        },
+        {
+            "id": 186,
+            "roll_number": "25CS186",
+            "reg_number": "714025104186",
+            "name": "NIVETHA S",
+            "class_id": 3
+        },
+        {
+            "id": 187,
+            "roll_number": "25CS187",
+            "reg_number": "714025104187",
+            "name": "OVIYA RETHANYA S",
+            "class_id": 3
+        },
+        {
+            "id": 188,
+            "roll_number": "25CS188",
+            "reg_number": "714025104188",
+            "name": "PADMANABHAN SURESH BABU S",
+            "class_id": 3
+        },
+        {
+            "id": 189,
+            "roll_number": "25CS189",
+            "reg_number": "714025104189",
+            "name": "PARAMASIVAM A",
+            "class_id": 4
+        },
+        {
+            "id": 190,
+            "roll_number": "25CS190",
+            "reg_number": "714025104190",
+            "name": "PARTHIBAN V",
+            "class_id": 4
+        },
+        {
+            "id": 191,
+            "roll_number": "25CS191",
+            "reg_number": "714025104191",
+            "name": "PAVINKUMAR R",
+            "class_id": 4
+        },
+        {
+            "id": 192,
+            "roll_number": "25CS192",
+            "reg_number": "714025104192",
+            "name": "PAVITHRA N",
+            "class_id": 4
+        },
+        {
+            "id": 193,
+            "roll_number": "25CS193",
+            "reg_number": "714025104193",
+            "name": "PIPIN P",
+            "class_id": 4
+        },
+        {
+            "id": 194,
+            "roll_number": "25CS194",
+            "reg_number": "714025104194",
+            "name": "POOJA SRI S",
+            "class_id": 4
+        },
+        {
+            "id": 195,
+            "roll_number": "25CS195",
+            "reg_number": "714025104195",
+            "name": "PRADEEP M",
+            "class_id": 4
+        },
+        {
+            "id": 196,
+            "roll_number": "25CS196",
+            "reg_number": "714025104196",
+            "name": "PRANESH GOVINDHARAJ G",
+            "class_id": 4
+        },
+        {
+            "id": 197,
+            "roll_number": "25CS197",
+            "reg_number": "714025104197",
+            "name": "PRAVEEN KUMAR S",
+            "class_id": 4
+        },
+        {
+            "id": 198,
+            "roll_number": "25CS198",
+            "reg_number": "714025104198",
+            "name": "PRIADHARSAN AK",
+            "class_id": 4
+        },
+        {
+            "id": 199,
+            "roll_number": "25CS199",
+            "reg_number": "714025104199",
+            "name": "PRIJITHA S",
+            "class_id": 4
+        },
+        {
+            "id": 200,
+            "roll_number": "25CS200",
+            "reg_number": "714025104200",
+            "name": "PRITHESH M",
+            "class_id": 4
+        },
+        {
+            "id": 201,
+            "roll_number": "25CS201",
+            "reg_number": "714025104201",
+            "name": "PRIYA DHARSHINI A",
+            "class_id": 4
+        },
+        {
+            "id": 202,
+            "roll_number": "25CS202",
+            "reg_number": "714025104202",
+            "name": "PRIYADHARSHINI G",
+            "class_id": 4
+        },
+        {
+            "id": 203,
+            "roll_number": "25CS203",
+            "reg_number": "714025104203",
+            "name": "PRIYADHARSHINI P",
+            "class_id": 4
+        },
+        {
+            "id": 204,
+            "roll_number": "25CS204",
+            "reg_number": "714025104204",
+            "name": "PRIYAN S",
+            "class_id": 4
+        },
+        {
+            "id": 205,
+            "roll_number": "25CS205",
+            "reg_number": "714025104205",
+            "name": "RACHANAA N",
+            "class_id": 4
+        },
+        {
+            "id": 206,
+            "roll_number": "25CS206",
+            "reg_number": "714025104206",
+            "name": "RAGHUNANDAN AR",
+            "class_id": 4
+        },
+        {
+            "id": 207,
+            "roll_number": "25CS207",
+            "reg_number": "714025104207",
+            "name": "RAGUL A",
+            "class_id": 4
+        },
+        {
+            "id": 208,
+            "roll_number": "25CS208",
+            "reg_number": "714025104208",
+            "name": "RAHUL G",
+            "class_id": 4
+        },
+        {
+            "id": 209,
+            "roll_number": "25CS209",
+            "reg_number": "714025104209",
+            "name": "RAHUL KUMAR R",
+            "class_id": 4
+        },
+        {
+            "id": 210,
+            "roll_number": "25CS210",
+            "reg_number": "714025104210",
+            "name": "RANJITH S",
+            "class_id": 4
+        },
+        {
+            "id": 211,
+            "roll_number": "25CS211",
+            "reg_number": "714025104211",
+            "name": "RESHMA M",
+            "class_id": 4
+        },
+        {
+            "id": 212,
+            "roll_number": "25CS212",
+            "reg_number": "714025104212",
+            "name": "RESHMA T",
+            "class_id": 4
+        },
+        {
+            "id": 213,
+            "roll_number": "25CS213",
+            "reg_number": "714025104213",
+            "name": "RINSHA SHERIN S",
+            "class_id": 4
+        },
+        {
+            "id": 214,
+            "roll_number": "25CS214",
+            "reg_number": "714025104214",
+            "name": "RITHAN S",
+            "class_id": 4
+        },
+        {
+            "id": 215,
+            "roll_number": "25CS215",
+            "reg_number": "714025104215",
+            "name": "RITHIKA BS",
+            "class_id": 4
+        },
+        {
+            "id": 216,
+            "roll_number": "25CS216",
+            "reg_number": "714025104216",
+            "name": "RITHIKA G",
+            "class_id": 4
+        },
+        {
+            "id": 217,
+            "roll_number": "25CS217",
+            "reg_number": "714025104217",
+            "name": "RITHIKA M",
+            "class_id": 4
+        },
+        {
+            "id": 218,
+            "roll_number": "25CS218",
+            "reg_number": "714025104218",
+            "name": "RITHIKA R",
+            "class_id": 4
+        },
+        {
+            "id": 219,
+            "roll_number": "25CS219",
+            "reg_number": "714025104219",
+            "name": "RITHISH C",
+            "class_id": 4
+        },
+        {
+            "id": 220,
+            "roll_number": "25CS220",
+            "reg_number": "714025104220",
+            "name": "ROHITH ANANTHAKUMAR R",
+            "class_id": 4
+        },
+        {
+            "id": 221,
+            "roll_number": "25CS221",
+            "reg_number": "714025104221",
+            "name": "ROVAAN KG",
+            "class_id": 4
+        },
+        {
+            "id": 222,
+            "roll_number": "25CS222",
+            "reg_number": "714025104222",
+            "name": "SADHANA M",
+            "class_id": 4
+        },
+        {
+            "id": 223,
+            "roll_number": "25CS223",
+            "reg_number": "714025104223",
+            "name": "SAMPREETH G",
+            "class_id": 4
+        },
+        {
+            "id": 224,
+            "roll_number": "25CS224",
+            "reg_number": "714025104224",
+            "name": "SANDEEP P",
+            "class_id": 4
+        },
+        {
+            "id": 225,
+            "roll_number": "25CS225",
+            "reg_number": "714025104225",
+            "name": "SANDHIYA A",
+            "class_id": 4
+        },
+        {
+            "id": 226,
+            "roll_number": "25CS226",
+            "reg_number": "714025104226",
+            "name": "SANGEETHA P",
+            "class_id": 4
+        },
+        {
+            "id": 227,
+            "roll_number": "25CS227",
+            "reg_number": "714025104227",
+            "name": "SANJAI KRISHNAN K",
+            "class_id": 4
+        },
+        {
+            "id": 228,
+            "roll_number": "25CS228",
+            "reg_number": "714025104228",
+            "name": "SANJAY DHURSON V",
+            "class_id": 4
+        },
+        {
+            "id": 229,
+            "roll_number": "25CS229",
+            "reg_number": "714025104229",
+            "name": "SANJAY RAM M",
+            "class_id": 4
+        },
+        {
+            "id": 230,
+            "roll_number": "25CS230",
+            "reg_number": "714025104230",
+            "name": "SANJAY V",
+            "class_id": 4
+        },
+        {
+            "id": 231,
+            "roll_number": "25CS231",
+            "reg_number": "714025104231",
+            "name": "SANJAYSREE T",
+            "class_id": 4
+        },
+        {
+            "id": 232,
+            "roll_number": "25CS232",
+            "reg_number": "714025104232",
+            "name": "SANJEEVKUMAR P",
+            "class_id": 4
+        },
+        {
+            "id": 233,
+            "roll_number": "25CS233",
+            "reg_number": "714025104233",
+            "name": "SANTHOSH R",
+            "class_id": 4
+        },
+        {
+            "id": 234,
+            "roll_number": "25CS234",
+            "reg_number": "714025104234",
+            "name": "SARAN S",
+            "class_id": 4
+        },
+        {
+            "id": 235,
+            "roll_number": "25CS235",
+            "reg_number": "714025104235",
+            "name": "SARANYA M",
+            "class_id": 4
+        },
+        {
+            "id": 236,
+            "roll_number": "25CS236",
+            "reg_number": "714025104236",
+            "name": "SARVESWARAN VA",
+            "class_id": 4
+        },
+        {
+            "id": 237,
+            "roll_number": "25CS237",
+            "reg_number": "714025104237",
+            "name": "SASITHARAN K",
+            "class_id": 4
+        },
+        {
+            "id": 238,
+            "roll_number": "25CS238",
+            "reg_number": "714025104238",
+            "name": "SATHYA SARAN A",
+            "class_id": 4
+        },
+        {
+            "id": 239,
+            "roll_number": "25CS239",
+            "reg_number": "714025104239",
+            "name": "SHAHANA AR",
+            "class_id": 4
+        },
+        {
+            "id": 240,
+            "roll_number": "25CS240",
+            "reg_number": "714025104240",
+            "name": "SHANMATHI S",
+            "class_id": 4
+        },
+        {
+            "id": 241,
+            "roll_number": "25CS241",
+            "reg_number": "714025104241",
+            "name": "SHARMITHA C",
+            "class_id": 4
+        },
+        {
+            "id": 242,
+            "roll_number": "25CS242",
+            "reg_number": "714025104242",
+            "name": "SHIVARAKKSHANA S",
+            "class_id": 4
+        },
+        {
+            "id": 243,
+            "roll_number": "25CS243",
+            "reg_number": "714025104243",
+            "name": "SHREE NITHI GOBIKA S",
+            "class_id": 4
+        },
+        {
+            "id": 244,
+            "roll_number": "25CS244",
+            "reg_number": "714025104244",
+            "name": "SHRI HARI VISHNU S",
+            "class_id": 4
+        },
+        {
+            "id": 245,
+            "roll_number": "25CS245",
+            "reg_number": "714025104245",
+            "name": "SHRIHARIVARSHAN S",
+            "class_id": 4
+        },
+        {
+            "id": 246,
+            "roll_number": "25CS246",
+            "reg_number": "714025104246",
+            "name": "SHRINIVAAS SB",
+            "class_id": 4
+        },
+        {
+            "id": 247,
+            "roll_number": "25CS247",
+            "reg_number": "714025104247",
+            "name": "SHRIVARSHA M",
+            "class_id": 4
+        },
+        {
+            "id": 248,
+            "roll_number": "25CS248",
+            "reg_number": "714025104248",
+            "name": "SHUNMUGA IYYAPPAN S",
+            "class_id": 4
+        },
+        {
+            "id": 249,
+            "roll_number": "25CS249",
+            "reg_number": "714025104249",
+            "name": "SINDHUJA SM",
+            "class_id": 4
+        },
+        {
+            "id": 250,
+            "roll_number": "25CS250",
+            "reg_number": "714025104250",
+            "name": "SINTHANAIVALAVAN S",
+            "class_id": 4
+        },
+        {
+            "id": 251,
+            "roll_number": "25CS251",
+            "reg_number": "714025104251",
+            "name": "SIVADARSHAN R",
+            "class_id": 5
+        },
+        {
+            "id": 252,
+            "roll_number": "25CS252",
+            "reg_number": "714025104252",
+            "name": "SIVAKUMAR S",
+            "class_id": 5
+        },
+        {
+            "id": 253,
+            "roll_number": "25CS253",
+            "reg_number": "714025104253",
+            "name": "SIVARANJANI M",
+            "class_id": 5
+        },
+        {
+            "id": 254,
+            "roll_number": "25CS254",
+            "reg_number": "714025104254",
+            "name": "SIVASANKARI S",
+            "class_id": 5
+        },
+        {
+            "id": 255,
+            "roll_number": "25CS255",
+            "reg_number": "714025104255",
+            "name": "SIVASURYA S",
+            "class_id": 5
+        },
+        {
+            "id": 256,
+            "roll_number": "25CS256",
+            "reg_number": "714025104256",
+            "name": "SNIYA M",
+            "class_id": 5
+        },
+        {
+            "id": 257,
+            "roll_number": "25CS257",
+            "reg_number": "714025104257",
+            "name": "SOWMIYA M",
+            "class_id": 5
+        },
+        {
+            "id": 258,
+            "roll_number": "25CS258",
+            "reg_number": "714025104258",
+            "name": "SREE HARISH M",
+            "class_id": 5
+        },
+        {
+            "id": 259,
+            "roll_number": "25CS259",
+            "reg_number": "714025104259",
+            "name": "SRI SANJAY KUMAR S",
+            "class_id": 5
+        },
+        {
+            "id": 260,
+            "roll_number": "25CS260",
+            "reg_number": "714025104260",
+            "name": "SRICHAND U S",
+            "class_id": 5
+        },
+        {
+            "id": 261,
+            "roll_number": "25CS261",
+            "reg_number": "714025104261",
+            "name": "SRIISHARAN S",
+            "class_id": 5
+        },
+        {
+            "id": 262,
+            "roll_number": "25CS262",
+            "reg_number": "714025104262",
+            "name": "SRIKAARTHEKA M",
+            "class_id": 5
+        },
+        {
+            "id": 263,
+            "roll_number": "25CS263",
+            "reg_number": "714025104263",
+            "name": "SRIMATHI G",
+            "class_id": 5
+        },
+        {
+            "id": 264,
+            "roll_number": "25CS264",
+            "reg_number": "714025104264",
+            "name": "SRIMATHI P",
+            "class_id": 5
+        },
+        {
+            "id": 265,
+            "roll_number": "25CS265",
+            "reg_number": "714025104265",
+            "name": "SRINITHI B",
+            "class_id": 5
+        },
+        {
+            "id": 266,
+            "roll_number": "25CS266",
+            "reg_number": "714025104266",
+            "name": "SRINITHI R J",
+            "class_id": 5
+        },
+        {
+            "id": 267,
+            "roll_number": "25CS267",
+            "reg_number": "714025104267",
+            "name": "SRIRAM D",
+            "class_id": 5
+        },
+        {
+            "id": 268,
+            "roll_number": "25CS268",
+            "reg_number": "714025104268",
+            "name": "SRISTHI N",
+            "class_id": 5
+        },
+        {
+            "id": 269,
+            "roll_number": "25CS269",
+            "reg_number": "714025104269",
+            "name": "SUBARANJANI G R",
+            "class_id": 5
+        },
+        {
+            "id": 270,
+            "roll_number": "25CS270",
+            "reg_number": "714025104270",
+            "name": "SUBHIKSHA V",
+            "class_id": 5
+        },
+        {
+            "id": 271,
+            "roll_number": "25CS271",
+            "reg_number": "714025104271",
+            "name": "SUBIKSHA S",
+            "class_id": 5
+        },
+        {
+            "id": 272,
+            "roll_number": "25CS272",
+            "reg_number": "714025104272",
+            "name": "SUBITHA S",
+            "class_id": 5
+        },
+        {
+            "id": 273,
+            "roll_number": "25CS273",
+            "reg_number": "714025104273",
+            "name": "SUDALAI MUTHU G",
+            "class_id": 5
+        },
+        {
+            "id": 274,
+            "roll_number": "25CS274",
+            "reg_number": "714025104274",
+            "name": "SUDEEP SANJAY M",
+            "class_id": 5
+        },
+        {
+            "id": 275,
+            "roll_number": "25CS275",
+            "reg_number": "714025104275",
+            "name": "SUGITHA G",
+            "class_id": 5
+        },
+        {
+            "id": 276,
+            "roll_number": "25CS276",
+            "reg_number": "714025104276",
+            "name": "SUJITH KUMAR S",
+            "class_id": 5
+        },
+        {
+            "id": 277,
+            "roll_number": "25CS277",
+            "reg_number": "714025104277",
+            "name": "SURIYA A M",
+            "class_id": 5
+        },
+        {
+            "id": 278,
+            "roll_number": "25CS278",
+            "reg_number": "714025104278",
+            "name": "SURIYA DHARSHINI S",
+            "class_id": 5
+        },
+        {
+            "id": 279,
+            "roll_number": "25CS279",
+            "reg_number": "714025104279",
+            "name": "SURJITH S",
+            "class_id": 5
+        },
+        {
+            "id": 280,
+            "roll_number": "25CS280",
+            "reg_number": "714025104280",
+            "name": "SURYA J",
+            "class_id": 5
+        },
+        {
+            "id": 281,
+            "roll_number": "25CS281",
+            "reg_number": "714025104281",
+            "name": "SURYA R",
+            "class_id": 5
+        },
+        {
+            "id": 282,
+            "roll_number": "25CS282",
+            "reg_number": "714025104282",
+            "name": "SUSILA M",
+            "class_id": 5
+        },
+        {
+            "id": 283,
+            "roll_number": "25CS283",
+            "reg_number": "714025104283",
+            "name": "SWATHI M",
+            "class_id": 5
+        },
+        {
+            "id": 284,
+            "roll_number": "25CS284",
+            "reg_number": "714025104284",
+            "name": "SWEDHA S",
+            "class_id": 5
+        },
+        {
+            "id": 285,
+            "roll_number": "25CS285",
+            "reg_number": "714025104285",
+            "name": "SWETHA A",
+            "class_id": 5
+        },
+        {
+            "id": 286,
+            "roll_number": "25CS286",
+            "reg_number": "714025104286",
+            "name": "TAMILARASI B",
+            "class_id": 5
+        },
+        {
+            "id": 287,
+            "roll_number": "25CS287",
+            "reg_number": "714025104287",
+            "name": "TARUN PRANAV RS",
+            "class_id": 5
+        },
+        {
+            "id": 288,
+            "roll_number": "25CS288",
+            "reg_number": "714025104288",
+            "name": "TARUNIKA RAJAGOPAL",
+            "class_id": 5
+        },
+        {
+            "id": 289,
+            "roll_number": "25CS289",
+            "reg_number": "714025104289",
+            "name": "TAUSIQ L",
+            "class_id": 5
+        },
+        {
+            "id": 290,
+            "roll_number": "25CS290",
+            "reg_number": "714025104290",
+            "name": "THARANITHARAN M",
+            "class_id": 5
+        },
+        {
+            "id": 291,
+            "roll_number": "25CS291",
+            "reg_number": "714025104291",
+            "name": "THARUN B",
+            "class_id": 5
+        },
+        {
+            "id": 292,
+            "roll_number": "25CS292",
+            "reg_number": "714025104292",
+            "name": "THARUNIKAA T",
+            "class_id": 5
+        },
+        {
+            "id": 293,
+            "roll_number": "25CS293",
+            "reg_number": "714025104293",
+            "name": "THENMOZHI K",
+            "class_id": 5
+        },
+        {
+            "id": 294,
+            "roll_number": "25CS294",
+            "reg_number": "714025104294",
+            "name": "THISANTHAN P",
+            "class_id": 5
+        },
+        {
+            "id": 295,
+            "roll_number": "25CS295",
+            "reg_number": "714025104295",
+            "name": "THRISHALA A",
+            "class_id": 5
+        },
+        {
+            "id": 296,
+            "roll_number": "25CS296",
+            "reg_number": "714025104296",
+            "name": "THRISHNA R",
+            "class_id": 5
+        },
+        {
+            "id": 297,
+            "roll_number": "25CS297",
+            "reg_number": "714025104297",
+            "name": "UGESH A",
+            "class_id": 5
+        },
+        {
+            "id": 298,
+            "roll_number": "25CS298",
+            "reg_number": "714025104298",
+            "name": "VAIRA AATHEESH S",
+            "class_id": 5
+        },
+        {
+            "id": 299,
+            "roll_number": "25CS299",
+            "reg_number": "714025104299",
+            "name": "VAISHNAVI K",
+            "class_id": 5
+        },
+        {
+            "id": 300,
+            "roll_number": "25CS300",
+            "reg_number": "714025104300",
+            "name": "VAISHNAVI S",
+            "class_id": 5
+        },
+        {
+            "id": 301,
+            "roll_number": "25CS301",
+            "reg_number": "714025104301",
+            "name": "VAISNIHAA S",
+            "class_id": 5
+        },
+        {
+            "id": 302,
+            "roll_number": "25CS302",
+            "reg_number": "714025104302",
+            "name": "VARSHINI R",
+            "class_id": 5
+        },
+        {
+            "id": 303,
+            "roll_number": "25CS303",
+            "reg_number": "714025104303",
+            "name": "VASANTHA MANI S",
+            "class_id": 5
+        },
+        {
+            "id": 304,
+            "roll_number": "25CS304",
+            "reg_number": "714025104304",
+            "name": "VEERAMANI N",
+            "class_id": 5
+        },
+        {
+            "id": 305,
+            "roll_number": "25CS305",
+            "reg_number": "714025104305",
+            "name": "VETRI VEL A",
+            "class_id": 5
+        },
+        {
+            "id": 306,
+            "roll_number": "25CS306",
+            "reg_number": "714025104306",
+            "name": "VIBIN D",
+            "class_id": 5
+        },
+        {
+            "id": 307,
+            "roll_number": "25CS307",
+            "reg_number": "714025104307",
+            "name": "VIDHYA VARSAN M",
+            "class_id": 5
+        },
+        {
+            "id": 308,
+            "roll_number": "25CS308",
+            "reg_number": "714025104308",
+            "name": "VIHASHINI R",
+            "class_id": 5
+        },
+        {
+            "id": 309,
+            "roll_number": "25CS309",
+            "reg_number": "714025104309",
+            "name": "VIJAY RATHINAM M",
+            "class_id": 5
+        },
+        {
+            "id": 310,
+            "roll_number": "25CS310",
+            "reg_number": "714025104310",
+            "name": "VIKASH S",
+            "class_id": 5
+        },
+        {
+            "id": 311,
+            "roll_number": "25CS311",
+            "reg_number": "714025104311",
+            "name": "VINITHA J",
+            "class_id": 5
+        },
+        {
+            "id": 312,
+            "roll_number": "25CS312",
+            "reg_number": "714025104312",
+            "name": "VISHWANATH N",
+            "class_id": 5
+        },
+        {
+            "id": 313,
+            "roll_number": "25CS313",
+            "reg_number": "714025104313",
+            "name": "YUVAN D",
+            "class_id": 5
+        }
+    ],
+    "faculty_subjects": [
+        {
+            "id": 1,
+            "faculty_id": 1,
+            "subject_id": 8,
+            "class_id": 4
+        },
+        {
+            "id": 2,
+            "faculty_id": 2,
+            "subject_id": 2,
+            "class_id": 2
+        },
+        {
+            "id": 3,
+            "faculty_id": 2,
+            "subject_id": 2,
+            "class_id": 4
+        },
+        {
+            "id": 4,
+            "faculty_id": 3,
+            "subject_id": 4,
+            "class_id": 5
+        },
+        {
+            "id": 5,
+            "faculty_id": 4,
+            "subject_id": 5,
+            "class_id": 4
+        },
+        {
+            "id": 6,
+            "faculty_id": 5,
+            "subject_id": 11,
+            "class_id": 3
+        },
+        {
+            "id": 7,
+            "faculty_id": 5,
+            "subject_id": 11,
+            "class_id": 4
+        },
+        {
+            "id": 8,
+            "faculty_id": 5,
+            "subject_id": 11,
+            "class_id": 5
+        },
+        {
+            "id": 9,
+            "faculty_id": 6,
+            "subject_id": 5,
+            "class_id": 1
+        },
+        {
+            "id": 10,
+            "faculty_id": 6,
+            "subject_id": 5,
+            "class_id": 2
+        },
+        {
+            "id": 11,
+            "faculty_id": 6,
+            "subject_id": 5,
+            "class_id": 3
+        },
+        {
+            "id": 12,
+            "faculty_id": 6,
+            "subject_id": 5,
+            "class_id": 4
+        },
+        {
+            "id": 13,
+            "faculty_id": 6,
+            "subject_id": 5,
+            "class_id": 5
+        },
+        {
+            "id": 14,
+            "faculty_id": 7,
+            "subject_id": 5,
+            "class_id": 5
+        },
+        {
+            "id": 15,
+            "faculty_id": 8,
+            "subject_id": 4,
+            "class_id": 2
+        },
+        {
+            "id": 16,
+            "faculty_id": 9,
+            "subject_id": 5,
+            "class_id": 2
+        },
+        {
+            "id": 17,
+            "faculty_id": 10,
+            "subject_id": 13,
+            "class_id": 4
+        },
+        {
+            "id": 18,
+            "faculty_id": 11,
+            "subject_id": 6,
+            "class_id": 2
+        },
+        {
+            "id": 19,
+            "faculty_id": 12,
+            "subject_id": 12,
+            "class_id": 3
+        },
+        {
+            "id": 20,
+            "faculty_id": 13,
+            "subject_id": 4,
+            "class_id": 4
+        },
+        {
+            "id": 21,
+            "faculty_id": 14,
+            "subject_id": 5,
+            "class_id": 1
+        },
+        {
+            "id": 22,
+            "faculty_id": 15,
+            "subject_id": 8,
+            "class_id": 5
+        },
+        {
+            "id": 23,
+            "faculty_id": 16,
+            "subject_id": 5,
+            "class_id": 3
+        },
+        {
+            "id": 24,
+            "faculty_id": 17,
+            "subject_id": 12,
+            "class_id": 2
+        },
+        {
+            "id": 25,
+            "faculty_id": 18,
+            "subject_id": 10,
+            "class_id": 1
+        },
+        {
+            "id": 26,
+            "faculty_id": 18,
+            "subject_id": 6,
+            "class_id": 1
+        },
+        {
+            "id": 27,
+            "faculty_id": 18,
+            "subject_id": 10,
+            "class_id": 2
+        },
+        {
+            "id": 28,
+            "faculty_id": 18,
+            "subject_id": 6,
+            "class_id": 2
+        },
+        {
+            "id": 29,
+            "faculty_id": 18,
+            "subject_id": 10,
+            "class_id": 3
+        },
+        {
+            "id": 30,
+            "faculty_id": 18,
+            "subject_id": 6,
+            "class_id": 3
+        },
+        {
+            "id": 31,
+            "faculty_id": 19,
+            "subject_id": 9,
+            "class_id": 4
+        },
+        {
+            "id": 32,
+            "faculty_id": 19,
+            "subject_id": 9,
+            "class_id": 5
+        },
+        {
+            "id": 33,
+            "faculty_id": 20,
+            "subject_id": 13,
+            "class_id": 3
+        },
+        {
+            "id": 34,
+            "faculty_id": 21,
+            "subject_id": 10,
+            "class_id": 4
+        },
+        {
+            "id": 35,
+            "faculty_id": 21,
+            "subject_id": 6,
+            "class_id": 4
+        },
+        {
+            "id": 36,
+            "faculty_id": 21,
+            "subject_id": 10,
+            "class_id": 5
+        },
+        {
+            "id": 37,
+            "faculty_id": 21,
+            "subject_id": 6,
+            "class_id": 5
+        },
+        {
+            "id": 38,
+            "faculty_id": 22,
+            "subject_id": 8,
+            "class_id": 2
+        },
+        {
+            "id": 39,
+            "faculty_id": 23,
+            "subject_id": 4,
+            "class_id": 1
+        },
+        {
+            "id": 40,
+            "faculty_id": 23,
+            "subject_id": 4,
+            "class_id": 3
+        },
+        {
+            "id": 41,
+            "faculty_id": 24,
+            "subject_id": 8,
+            "class_id": 3
+        },
+        {
+            "id": 42,
+            "faculty_id": 25,
+            "subject_id": 12,
+            "class_id": 4
+        },
+        {
+            "id": 43,
+            "faculty_id": 25,
+            "subject_id": 12,
+            "class_id": 5
+        },
+        {
+            "id": 44,
+            "faculty_id": 26,
+            "subject_id": 6,
+            "class_id": 3
+        },
+        {
+            "id": 45,
+            "faculty_id": 27,
+            "subject_id": 11,
+            "class_id": 1
+        },
+        {
+            "id": 46,
+            "faculty_id": 27,
+            "subject_id": 9,
+            "class_id": 1
+        },
+        {
+            "id": 47,
+            "faculty_id": 27,
+            "subject_id": 11,
+            "class_id": 2
+        },
+        {
+            "id": 48,
+            "faculty_id": 27,
+            "subject_id": 9,
+            "class_id": 2
+        },
+        {
+            "id": 49,
+            "faculty_id": 27,
+            "subject_id": 11,
+            "class_id": 3
+        },
+        {
+            "id": 50,
+            "faculty_id": 27,
+            "subject_id": 9,
+            "class_id": 3
+        },
+        {
+            "id": 51,
+            "faculty_id": 28,
+            "subject_id": 1,
+            "class_id": 1
+        },
+        {
+            "id": 52,
+            "faculty_id": 28,
+            "subject_id": 1,
+            "class_id": 2
+        },
+        {
+            "id": 53,
+            "faculty_id": 28,
+            "subject_id": 1,
+            "class_id": 3
+        },
+        {
+            "id": 54,
+            "faculty_id": 28,
+            "subject_id": 1,
+            "class_id": 4
+        },
+        {
+            "id": 55,
+            "faculty_id": 28,
+            "subject_id": 1,
+            "class_id": 5
+        },
+        {
+            "id": 56,
+            "faculty_id": 31,
+            "subject_id": 7,
+            "class_id": 1
+        },
+        {
+            "id": 57,
+            "faculty_id": 31,
+            "subject_id": 3,
+            "class_id": 1
+        },
+        {
+            "id": 58,
+            "faculty_id": 31,
+            "subject_id": 7,
+            "class_id": 4
+        },
+        {
+            "id": 59,
+            "faculty_id": 31,
+            "subject_id": 3,
+            "class_id": 4
+        },
+        {
+            "id": 60,
+            "faculty_id": 31,
+            "subject_id": 7,
+            "class_id": 5
+        },
+        {
+            "id": 61,
+            "faculty_id": 31,
+            "subject_id": 3,
+            "class_id": 5
+        },
+        {
+            "id": 62,
+            "faculty_id": 32,
+            "subject_id": 7,
+            "class_id": 3
+        },
+        {
+            "id": 63,
+            "faculty_id": 32,
+            "subject_id": 3,
+            "class_id": 3
+        },
+        {
+            "id": 64,
+            "faculty_id": 33,
+            "subject_id": 7,
+            "class_id": 2
+        },
+        {
+            "id": 65,
+            "faculty_id": 33,
+            "subject_id": 3,
+            "class_id": 2
+        },
+        {
+            "id": 66,
+            "faculty_id": 34,
+            "subject_id": 2,
+            "class_id": 5
+        },
+        {
+            "id": 67,
+            "faculty_id": 35,
+            "subject_id": 13,
+            "class_id": 5
+        },
+        {
+            "id": 68,
+            "faculty_id": 36,
+            "subject_id": 2,
+            "class_id": 1
+        },
+        {
+            "id": 69,
+            "faculty_id": 36,
+            "subject_id": 2,
+            "class_id": 3
+        },
+        {
+            "id": 70,
+            "faculty_id": 37,
+            "subject_id": 7,
+            "class_id": 4
+        },
+        {
+            "id": 71,
+            "faculty_id": 38,
+            "subject_id": 8,
+            "class_id": 1
+        },
+        {
+            "id": 72,
+            "faculty_id": 39,
+            "subject_id": 13,
+            "class_id": 1
+        },
+        {
+            "id": 73,
+            "faculty_id": 39,
+            "subject_id": 12,
+            "class_id": 1
+        },
+        {
+            "id": 74,
+            "faculty_id": 39,
+            "subject_id": 13,
+            "class_id": 2
+        },
+        {
+            "id": 75,
+            "faculty_id": 39,
+            "subject_id": 12,
+            "class_id": 2
+        },
+        {
+            "id": 76,
+            "faculty_id": 39,
+            "subject_id": 13,
+            "class_id": 5
+        },
+        {
+            "id": 77,
+            "faculty_id": 39,
+            "subject_id": 12,
+            "class_id": 5
+        }
+    ],
+    "attendance": [
+        {
+            "id": 320,
+            "date": "2026-02-28",
+            "status": "Absent",
+            "student_id": 1,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 321,
+            "date": "2026-02-28",
+            "status": "Absent",
+            "student_id": 2,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 322,
+            "date": "2026-02-28",
+            "status": "OD",
+            "student_id": 3,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 323,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 4,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 324,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 5,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 325,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 6,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 326,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 7,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 327,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 8,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 328,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 9,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 329,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 10,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 330,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 11,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 331,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 12,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 332,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 13,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 333,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 14,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 334,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 15,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 335,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 16,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 336,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 17,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 337,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 18,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 338,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 19,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 339,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 20,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 340,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 21,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 341,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 22,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 342,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 23,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 343,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 24,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 344,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 25,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 345,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 26,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 346,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 27,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 347,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 28,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 348,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 29,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 349,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 30,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 350,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 31,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 351,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 32,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 352,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 33,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 353,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 34,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 354,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 35,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 355,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 36,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 356,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 37,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 357,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 38,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 358,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 39,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 359,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 40,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 360,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 41,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 361,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 42,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 362,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 43,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 363,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 44,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 364,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 45,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 365,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 46,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 366,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 47,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 367,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 48,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 368,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 49,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 369,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 50,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 370,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 51,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 371,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 52,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 372,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 53,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 373,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 54,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 374,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 55,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 375,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 56,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 376,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 57,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 377,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 58,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 378,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 59,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 379,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 60,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 380,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 61,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 381,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 62,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 382,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 63,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 383,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 64,
+            "class_id": 1,
+            "subject_id": 1
+        },
+        {
+            "id": 384,
+            "date": "2026-02-28",
+            "status": "Absent",
+            "student_id": 126,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 385,
+            "date": "2026-02-28",
+            "status": "Absent",
+            "student_id": 127,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 386,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 128,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 387,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 129,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 388,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 130,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 389,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 131,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 390,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 132,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 391,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 133,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 392,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 134,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 393,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 135,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 394,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 136,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 395,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 137,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 396,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 138,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 397,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 139,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 398,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 140,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 399,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 141,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 400,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 142,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 401,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 143,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 402,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 144,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 403,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 145,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 404,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 146,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 405,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 147,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 406,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 148,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 407,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 149,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 408,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 150,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 409,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 151,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 410,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 152,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 411,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 153,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 412,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 154,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 413,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 155,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 414,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 156,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 415,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 157,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 416,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 158,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 417,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 159,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 418,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 160,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 419,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 161,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 420,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 162,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 421,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 163,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 422,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 164,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 423,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 165,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 424,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 166,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 425,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 167,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 426,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 168,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 427,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 169,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 428,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 170,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 429,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 171,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 430,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 172,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 431,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 173,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 432,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 174,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 433,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 175,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 434,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 176,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 435,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 177,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 436,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 178,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 437,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 179,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 438,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 180,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 439,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 181,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 440,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 182,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 441,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 183,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 442,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 184,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 443,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 185,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 444,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 186,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 445,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 187,
+            "class_id": 3,
+            "subject_id": 12
+        },
+        {
+            "id": 446,
+            "date": "2026-02-28",
+            "status": "Present",
+            "student_id": 188,
+            "class_id": 3,
+            "subject_id": 12
+        }
+    ],
+    "chat_messages": [
+        {
+            "id": 72,
+            "class_id": 3,
+            "subject_id": 12,
+            "message_text": "126, 127 absent and 128 od Session 1",
+            "message_type": "teacher",
+            "timestamp": "2026-02-28T08:21:56.222981",
+            "faculty_id": null
+        },
+        {
+            "id": 73,
+            "class_id": 3,
+            "subject_id": 12,
+            "message_text": "0 students parsed and updated",
+            "message_type": "system",
+            "timestamp": "2026-02-28T08:21:56.719209",
+            "faculty_id": null
+        },
+        {
+            "id": 74,
+            "class_id": 3,
+            "subject_id": 12,
+            "message_text": "126, 127 absent Session 1",
+            "message_type": "teacher",
+            "timestamp": "2026-02-28T08:22:56.691210",
+            "faculty_id": null
+        },
+        {
+            "id": 75,
+            "class_id": 3,
+            "subject_id": 12,
+            "message_text": "63 students parsed and updated",
+            "message_type": "system",
+            "timestamp": "2026-02-28T08:23:04.503225",
+            "faculty_id": null
+        }
+    ]
+}

@@ -8,4 +8,9 @@ inspector = inspect(engine)
 columns = inspector.get_columns('attendance')
 print('ATTENDANCE COLUMNS:')
 for col in columns:
-    print(f'- {col[''name'']} ({col[''type'']})')
+    print(f"- {col['name']} ({col['type']})")
+
+columns = inspector.get_columns('chat_messages')
+print('\nCHAT_MESSAGES COLUMNS:')
+for col in columns:
+    print(f"- {col['name']} ({col['type']})")

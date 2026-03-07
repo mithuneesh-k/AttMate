@@ -165,17 +165,16 @@ export default function ClassChat() {
                             >
                                 <Text style={styles.statsBtnText}>📊 Stats</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={handleNewSession} style={[styles.statsBtn, { backgroundColor: COLORS.surface, borderColor: COLORS.primary }]}>
-                                <Text style={[styles.statsBtnText, { color: COLORS.primary }]}>+ Session {currentSession + 1}</Text>
-                            </TouchableOpacity>
                         </View>
                     </View>
 
                     <ScrollView
                         ref={scrollRef}
-                        style={styles.chatArea}
+                        style={[styles.chatArea, { flex: 1 }]}
                         contentContainerStyle={styles.chatContent}
-                        showsVerticalScrollIndicator={false}
+                        showsVerticalScrollIndicator={true}
+
+
                         onContentSizeChange={() => scrollRef.current?.scrollToEnd({ animated: true })}
                     >
                         {loading ? (
@@ -209,12 +208,31 @@ export default function ClassChat() {
                             </View>
                         )}
 
+                        <View style={styles.shortcutRow}>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    if (!inputText.startsWith('Log: ')) {
+                                        setInputText('Log: ' + inputText);
+                                    }
+                                }}
+                                style={[styles.shortcutBtn, { backgroundColor: COLORS.accentSoft, borderColor: COLORS.accent }]}
+                            >
+                                <Text style={[styles.shortcutText, { color: COLORS.accentDeep }]}>+ Log</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={handleNewSession}
+                                style={[styles.shortcutBtn, { backgroundColor: COLORS.surface, borderColor: COLORS.primary }]}
+                            >
+                                <Text style={[styles.shortcutText, { color: COLORS.primary }]}>+ Session {currentSession + 1}</Text>
+                            </TouchableOpacity>
+                        </View>
+
                         <View style={styles.inputContainer}>
                             <TextInput
                                 style={styles.input}
                                 value={inputText}
                                 onChangeText={setInputText}
-                                placeholder="e.g. 133, 155 absent | 144 OD"
+                                placeholder="e.g. 133, 155 absent | Log: Today I taught..."
                                 placeholderTextColor={COLORS.muted}
                                 multiline
                             />
@@ -234,7 +252,13 @@ export default function ClassChat() {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#fdfdfd' },
+    container: {
+        flex: 1,
+        backgroundColor: '#f8fafc',
+    },
+
+
+
     flex: { flex: 1 },
     chatHeader: {
         flexDirection: 'row',
@@ -347,5 +371,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     sendBtnDisabled: { backgroundColor: '#f1f5f9' },
-    sendBtnText: { color: '#fff', fontSize: 18, fontWeight: '700' }
+    sendBtnText: { color: '#fff', fontSize: 18, fontWeight: '700' },
+
+    shortcutRow: { flexDirection: 'row', gap: 10, marginBottom: 12 },
+    shortcutBtn: {
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        borderRadius: 12,
+        borderWidth: 1,
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    shortcutText: { fontSize: 13, fontWeight: '700' }
 });

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, ActivityIndicator, Alert, Platform } from 'react-native';
+
 // import { supabase } from '../services/supabaseClient'; (Disabled for Demo)
 import { useNavigation } from '@react-navigation/native';
 

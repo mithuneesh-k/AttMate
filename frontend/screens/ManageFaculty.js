@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, Modal, TextInput, ScrollView, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, Modal, TextInput, ScrollView, ActivityIndicator, Platform } from 'react-native';
 import { COLORS, GLOBAL_STYLES } from '../styles/theme';
 import api from '../api';
 
@@ -61,9 +61,11 @@ export default function ManageFaculty() {
                     data={faculty}
                     renderItem={renderItem}
                     keyExtractor={item => item.id.toString()}
-                    contentContainerStyle={styles.list}
-                    showsVerticalScrollIndicator={false}
+                    style={{ flex: 1 }}
+                    contentContainerStyle={[styles.list, { flexGrow: 1 }]}
+                    showsVerticalScrollIndicator={true}
                 />
+
             )}
 
             <Modal
@@ -106,7 +108,11 @@ export default function ManageFaculty() {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#fff' },
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+    },
+
     header: {
         flexDirection: 'row',
         justifyContent: 'space-between',

@@ -6,7 +6,7 @@ from typing import List
 import pandas as pd
 import io
 import re
-from datetime import date
+from datetime import date, datetime
 from fastapi.middleware.cors import CORSMiddleware
 import models, schemas, database
 from database import engine
@@ -347,8 +347,22 @@ async def chat_interaction(
     # Check if parsing was successful
     if "error" not in parse_result:
         
+        # 0. HANDLE LOG ENTRIES
+        if parse_result.get('pattern_type') == 'log':
+            log_content = parse_result.get('content')
+            db_log = models.SessionLog(
+                date=today,
+                content=log_content,
+                class_id=class_id,
+                subject_id=subject_id,
+                faculty_id=faculty_id
+            )
+            db.add(db_log)
+            response_text = f"Logged: {log_content[:50]}..." if len(log_content) > 50 else f"Logged: {log_content}"
+            processed_count = 1
+
         # 1. HANDLE DATA FETCHING QUERIES
-        if parse_result.get('pattern_type') == 'query':
+        elif parse_result.get('pattern_type') == 'query':
             query_status = parse_result.get('status', 'Absent')
             query_date_str = parse_result.get('query_date')
             
@@ -386,19 +400,21 @@ async def chat_interaction(
             processed_count = len(records)
             
         # 2. PROCESS EXPLICIT ENTRIES (WRITE MODES)
-        else:
-            entries_to_process = []
+        entries_to_process = []
         
-        if parse_result.get('pattern_type') == 'multiple_individual':
+        # If the parser returned a list of individual entries (e.g. mixed statuses)
+        if 'entries' in parse_result:
             entries = parse_result.get('entries', [])
             for entry in entries:
                 entries_to_process.append((entry['roll_number'], entry['status']))
-        else:
-            # Standard list/range format
+        
+        # Fallback for older pattern matching that returns roll_numbers + single status
+        elif 'roll_numbers' in parse_result:
             roll_numbers = parse_result.get("roll_numbers", [])
             status = parse_result.get("status", "Absent")
             for roll in roll_numbers:
                 entries_to_process.append((roll, status))
+
         
         # Normalize statuses to strict DB case BEFORE processing
         normalized_entries = []
@@ -482,9 +498,17 @@ async def chat_interaction(
                 # If already exists, we do NOT overwrite automatically to avoid accidents
                 # unless logic dictates otherwise. For now, we only fill gaps.
 
-            response_text = f"{processed_count + auto_present_count} students parsed and updated"
+            status_counts = {}
+            for _, s in entries_to_process:
+                status_counts[s] = status_counts.get(s, 0) + 1
+            
+            summary_parts = [f"{count} {s}" for s, count in status_counts.items()]
+            if auto_present_count > 0:
+                summary_parts.append(f"{auto_present_count} Present (auto)")
+                
+            response_text = "Marked: " + ", ".join(summary_parts)
         else:
-             response_text = f"{processed_count} students parsed and updated"
+             response_text = f"Updated records for {processed_count} students."
 
     else:
         # Parsing failed - provide helpful error message
@@ -531,37 +555,42 @@ def get_attendance_sheet(class_id: int, subject_id: int, db: Session = Depends(d
     # Store as string "YYYY-MM-DD"
     dates = [f"{d[0].isoformat()}" for d in dates_query]
 
-    # 3. Build the grid
-    # Row: { name: "Student Name", roll: "101", "2026-02-18|1": "P", "2026-02-18|2": "A", ... }
-    
+    # 3. Fetch all attendance records for this class and subject in ONE query (Bulk Fetch)
+    all_attendance = db.query(models.Attendance).filter(
+        models.Attendance.class_id == class_id,
+        models.Attendance.subject_id == subject_id
+    ).all()
+
+    # Group records by student_id for O(1) lookup
+    from collections import defaultdict
+    student_att_map = defaultdict(dict)
+    for rec in all_attendance:
+        d_str = rec.date.isoformat()
+        
+        # Normalize status
+        short_s = "-"
+        raw_s = rec.status.lower() if rec.status else ""
+        if raw_s in ["present", "p"]: short_s = "P"
+        elif raw_s in ["absent", "a"]: short_s = "A"
+        elif raw_s in ["od", "o"]: short_s = "O"
+        
+        student_att_map[rec.student_id][d_str] = short_s
+
+    # 4. Build the grid using the in-memory map
     grid = []
-    
     for student in students:
         row = {
+            "id": student.id,
             "name": student.name,
             "roll": student.roll_number,
             "attendance": {}
         }
         
-        # Fetch all attendance for this student in this subject
-        recs = db.query(models.Attendance).filter(
-            models.Attendance.student_id == student.id,
-            models.Attendance.subject_id == subject_id
-        ).all()
-        
-        # Map "date" to status
-        att_map = {f"{rec.date.isoformat()}": rec.status for rec in recs}
+        # Get pre-filled attendance for this student
+        att_data = student_att_map.get(student.id, {})
         
         for d_key in dates:
-            status = att_map.get(d_key, "-") # - for no record
-            # Normalize status for frontend (P, A, O) case-insensitively
-            short_status = "-"
-            raw_s = status.lower()
-            if raw_s in ["present", "p"]: short_status = "P"
-            elif raw_s in ["absent", "a"]: short_status = "A"
-            elif raw_s in ["od", "o"]: short_status = "O"
-            
-            row["attendance"][d_key] = short_status
+            row["attendance"][d_key] = att_data.get(d_key, "-")
             
         grid.append(row)
         
@@ -569,6 +598,96 @@ def get_attendance_sheet(class_id: int, subject_id: int, db: Session = Depends(d
         "dates": dates,
         "students": grid
     }
+
+@app.get("/teacher/day-details/{class_id}/{date_str}")
+def get_day_details(class_id: int, date_str: str, db: Session = Depends(database.get_db)):
+    try:
+        target_date = datetime.strptime(date_str, "%Y-%m-%d").date()
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid date format. Use YYYY-MM-DD")
+
+    # Fetch Logs for this class on this date
+    logs = db.query(models.SessionLog).filter(
+        models.SessionLog.class_id == class_id,
+        models.SessionLog.date == target_date
+    ).all()
+
+    # Fetch Attendance summary for this class on this date
+    # Group by subject
+    attendance_records = db.query(models.Attendance).filter(
+        models.Attendance.class_id == class_id,
+        models.Attendance.date == target_date
+    ).all()
+
+    subjects = db.query(models.Subject).all()
+    sub_map = {s.id: s.name for s in subjects}
+
+    att_summary = {}
+    for rec in attendance_records:
+        sub_name = sub_map.get(rec.subject_id, "Unknown")
+        if sub_name not in att_summary:
+            att_summary[sub_name] = {"Present": 0, "Absent": 0, "OD": 0, "Leave": 0}
+        
+        status = rec.status
+        if status in att_summary[sub_name]:
+            att_summary[sub_name][status] += 1
+
+    return {
+        "date": date_str,
+        "logs": logs,
+        "attendance": att_summary
+    }
+
+@app.post("/teacher/update-attendance")
+def update_attendance(data: dict, db: Session = Depends(database.get_db)):
+    """
+    Manually update/override attendance record.
+    Expected data: { student_id, class_id, subject_id, date, status }
+    """
+    student_id = data.get('student_id')
+    class_id = data.get('class_id')
+    subject_id = data.get('subject_id')
+    date_str = data.get('date')
+    status = data.get('status')
+    
+    if not all([student_id, class_id, subject_id, date_str, status]):
+        raise HTTPException(status_code=400, detail="Missing required fields")
+    
+    try:
+        target_date = datetime.strptime(date_str, "%Y-%m-%d").date()
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid date format")
+
+    # Check if record exists
+    record = db.query(models.Attendance).filter(
+        models.Attendance.student_id == student_id,
+        models.Attendance.class_id == class_id,
+        models.Attendance.subject_id == subject_id,
+        models.Attendance.date == target_date
+    ).first()
+
+    if record:
+        record.status = status
+    else:
+        record = models.Attendance(
+            student_id=student_id,
+            class_id=class_id,
+            subject_id=subject_id,
+            date=target_date,
+            status=status
+        )
+        db.add(record)
+    
+    db.commit()
+    return {"status": "success", "new_status": status}
+
+@app.get("/teacher/session-logs/{class_id}/{subject_id}")
+def get_session_logs(class_id: int, subject_id: int, db: Session = Depends(database.get_db)):
+    logs = db.query(models.SessionLog).filter(
+        models.SessionLog.class_id == class_id,
+        models.SessionLog.subject_id == subject_id
+    ).order_by(models.SessionLog.timestamp.desc()).all()
+    return logs
 
 @app.get("/chat/history/{class_id}/{subject_id}")
 def get_chat_history(
@@ -659,4 +778,26 @@ def get_subject_student_stats(class_id: int, subject_name: str, db: Session = De
             "attendance_percentage": percent
         })
     return result
+
+# --- SESSION LOGS ---
+@app.post("/teacher/session-logs", response_model=schemas.SessionLog)
+def create_session_log(log: schemas.SessionLogCreate, db: Session = Depends(database.get_db)):
+    db_log = models.SessionLog(
+        date=log.date,
+        content=log.content,
+        class_id=log.class_id,
+        subject_id=log.subject_id,
+        faculty_id=log.faculty_id
+    )
+    db.add(db_log)
+    db.commit()
+    db.refresh(db_log)
+    return db_log
+
+@app.get("/teacher/session-logs/{class_id}/{subject_id}", response_model=List[schemas.SessionLog])
+def get_session_logs(class_id: int, subject_id: int, db: Session = Depends(database.get_db)):
+    return db.query(models.SessionLog).filter(
+        models.SessionLog.class_id == class_id,
+        models.SessionLog.subject_id == subject_id
+    ).order_by(models.SessionLog.date.desc()).all()
 

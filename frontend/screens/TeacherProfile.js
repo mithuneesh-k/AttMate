@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Alert, ScrollView, Platform } from 'react-native';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 
@@ -21,24 +22,30 @@ export default function TeacherProfile() {
     };
 
     return (
-        <View style={styles.container}>
-            <View style={styles.card}>
-                <View style={styles.avatar} />
-                <Text style={styles.email}>{user?.email}</Text>
-                <Text style={styles.role}>{user?.role?.toUpperCase()}</Text>
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }} style={styles.container}>
+            <View style={styles.content}>
+                <View style={styles.card}>
+                    <View style={styles.avatar} />
+                    <Text style={styles.email}>{user?.email}</Text>
+                    <Text style={styles.role}>{user?.role?.toUpperCase()}</Text>
 
-                <View style={styles.divider} />
+                    <View style={styles.divider} />
 
-                <TouchableOpacity style={styles.btnLogout} onPress={logout}>
-                    <Text style={styles.btnText}>Logout</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity style={styles.btnLogout} onPress={logout}>
+                        <Text style={styles.btnText}>Logout</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-        </View>
+        </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#f8fafc', padding: 20, justifyContent: 'center' },
+    container: {
+        flex: 1,
+        backgroundColor: '#f8fafc',
+    },
+    content: { flex: 1, padding: 20, justifyContent: 'center' },
     card: { backgroundColor: '#fff', padding: 30, borderRadius: 20, alignItems: 'center', shadowColor: '#000', shadowOpacity: 0.1, elevation: 5 },
     avatar: { width: 80, height: 80, borderRadius: 40, backgroundColor: '#22c55e', marginBottom: 16 },
     email: { fontSize: 18, fontWeight: 'bold' },

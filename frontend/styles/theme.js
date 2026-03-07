@@ -1,4 +1,5 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
+
 
 export const COLORS = {
     bg: '#ffffff',
@@ -107,5 +108,17 @@ export const GLOBAL_STYLES = StyleSheet.create({
     webScroll: {
         // This will be used in components to allow better desktop scrolling
         overflowX: 'auto',
+    },
+    screenContainer: {
+        flex: 1,
+        backgroundColor: COLORS.bg,
     }
+
+
+
+
+
+
+
+
 });

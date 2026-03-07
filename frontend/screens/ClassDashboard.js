@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, Platform } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { COLORS, GLOBAL_STYLES } from '../styles/theme';
 import { useAuth } from '../context/AuthContext';
@@ -96,9 +96,11 @@ export default function ClassDashboard() {
     return (
         <View style={styles.container}>
             <ScrollView
+                style={{ flex: 1 }}
                 showsVerticalScrollIndicator={true}
                 contentContainerStyle={styles.scrollContent}
             >
+
                 <View style={styles.header}>
                     <Text style={GLOBAL_STYLES.title}>{targetClassName} Dashboard</Text>
                     <Text style={GLOBAL_STYLES.subtitle}>
@@ -165,10 +167,15 @@ export default function ClassDashboard() {
             <BottomNav />
         </View>
     );
+
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#fff' },
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+    },
+
     scrollContent: { flexGrow: 1 },
     header: { padding: 24, paddingBottom: 12 },
     overallCard: { margin: 24, marginTop: 0, padding: 24 },

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator, Platform } from 'react-native';
+
 import { useNavigation } from '@react-navigation/native';
 import { COLORS, GLOBAL_STYLES } from '../styles/theme';
 import { useAuth } from '../context/AuthContext';
@@ -77,9 +78,11 @@ export default function TeacherHome() {
                     data={classes}
                     renderItem={renderItem}
                     keyExtractor={item => item.id.toString()}
-                    contentContainerStyle={styles.list}
-                    showsVerticalScrollIndicator={false}
+                    style={{ flex: 1 }}
+                    contentContainerStyle={[styles.list, { flexGrow: 1 }]}
+                    showsVerticalScrollIndicator={true}
                 />
+
             )}
             <BottomNav />
         </View>
@@ -87,7 +90,10 @@ export default function TeacherHome() {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#fff' },
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+    },
     header: { padding: 24, paddingBottom: 12 },
     list: { padding: 20, paddingTop: 0 },
     classCard: {

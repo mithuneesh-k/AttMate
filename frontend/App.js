@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import LoginScreen from './screens/LoginScreen';
@@ -16,18 +16,17 @@ import Stats from './screens/Stats';
 import Profile from './screens/Profile';
 
 import Header from './components/Header';
-import BottomNav from './components/BottomNav';
-
 import { AuthProvider } from './context/AuthContext';
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider style={{ flex: 1 }}>
       <AuthProvider>
         <NavigationContainer>
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 1, backgroundColor: '#fff' }}>
+
             <Stack.Navigator
               initialRouteName="Login"
               screenOptions={{
@@ -56,4 +55,3 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({});
